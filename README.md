@@ -1,6 +1,7 @@
 # vector
 
-A proof-of-concept/partial implementation to demonstrate how fast std::vector could have been.
+A proof-of-concept/partial implementation of std::vector, but 2.3x faster.  
+This is meant to show you why you should ditch C++ STLs when performance is critical.
 
 It's just a proof-of-concept (for now at least),  
 which means it's **NOT** standard-compliant and lacks many, many implementation details.
