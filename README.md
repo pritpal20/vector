@@ -1,9 +1,9 @@
 # vector
 
-A proof-of-concept/partial implementation to demonstrate how fast std::vector could have been
+A proof-of-concept/partial implementation to demonstrate how fast std::vector could have been.
 
-*This is currently a side project and may not be actively updated.*  
-*It's also* **NOT** *standard-compliant at this moment*
+It's just a proof-of-concept (for now at least),  
+which means it's **NOT** standard-compliant and lacks many, many implementation details.
 
 
 ## Usage
