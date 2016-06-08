@@ -15,10 +15,10 @@ namespace lni {
 			iterator end();
 			int size();
 			void push_back(const T &);
-			void emplace_back(const T &&);
+			void emplace_back(T &&);
 		private:
-			int RSRV_SZ = 4;
-			int vec_sz = RSRV_SZ;
+			int rsrv_sz = 4;
+			int vec_sz = 0;
 			T *arr;
 	};
 
