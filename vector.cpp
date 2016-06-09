@@ -20,7 +20,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	inline int & vector<T>::operator [](const int &idx) {
+	inline T & vector<T>::operator [](const int &idx) {
 		return arr[idx];
 	}
 
