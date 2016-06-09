@@ -88,5 +88,21 @@ namespace lni {
 		vec_sz = 0;
 	}
 
+	template <typename T>
+	void vector<T>::swap(lni::vector<T> &rhs) {
+		int i, sz = rhs.size();
+		T *tmp = new T[sz];
+		for (i = 0; i < sz; ++i)
+			tmp[i] = rhs.arr[i];
+		rhs.reserve(vec_sz);
+		for (i = 0; i < vec_sz; ++i)
+			rhs.arr[i] = arr[i];
+		rhs.vec_sz = vec_sz;
+		reserve(sz);
+		for (i = 0; i < sz; ++i)
+			arr[i] = tmp[i];
+		vec_sz = sz;
+		delete [] tmp;
+	}
 }
 

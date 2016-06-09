@@ -19,6 +19,7 @@ namespace lni {
 			void reserve(const int &);
 			void resize(const int &);
 			void clear();
+			void swap(lni::vector<T> &);
 		private:
 			int rsrv_sz = 4;
 			int vec_sz = 0;
