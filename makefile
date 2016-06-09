@@ -5,9 +5,9 @@ all: tester
 tester: vector.h vector.cpp tester.cpp
 	g++ -std=c++11 tester.cpp -o tester
 
-tester_dbg: vector.h vector.cpp tester.cpp
-	g++ -std=c++11 -D DEBUG tester.cpp -o tester_dbg
+dbg: vector.h vector.cpp tester.cpp
+	g++ -std=c++11 -D DEBUG tester.cpp -o dbg
 
 clean:
 	rm tester || true
-	rm tester_dbg || true
+	rm dbg || true
