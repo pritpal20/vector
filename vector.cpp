@@ -60,7 +60,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	int vector<T>::empty() {
+	bool vector<T>::empty() {
 		return vec_sz == 0;
 	}
 
