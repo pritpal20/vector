@@ -7,6 +7,16 @@ namespace lni {
 	}
 
 	template <typename T>
+	vector<T>::vector(std::initializer_list<T> &&lst) {
+		if (lst.size() > rsrv_sz) {
+			rsrv_sz = lst.size() << 2;
+			reallocate();
+		}
+		for (auto &item: lst)
+			arr[vec_sz++] = item;
+	}
+
+	template <typename T>
 	vector<T>::~vector() {
 		delete [] arr;
 	}

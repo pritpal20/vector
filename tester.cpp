@@ -20,10 +20,13 @@ int main() {
 	 	printf("%d ", n);
 	puts("");
 
-	puts("Testing swap ....");
-	lni::vector<int> v2;
-	for (i = 10; i < 15; i++)
-		v2.push_back(i);
+	puts("Testing initializer list ...");
+	lni::vector<int> v2 = {10, 11, 12, 13, 14};
+	for (auto &n: v2)
+		printf("%d ", n);
+	puts("");
+
+	puts("Testing swap ...");
 	v1.swap(v2);
 	for (auto &n: v1)
 		printf("%d ", n);

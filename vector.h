@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <utility>
 
 #ifndef LNI_VECTOR
 #define LNI_VECTOR
@@ -9,6 +10,7 @@ namespace lni {
 	class vector {
 		public:
 			vector();
+			vector(std::initializer_list<T> &&);
 			~vector();
 			typedef T *iterator;
 			iterator begin();
