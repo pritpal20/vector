@@ -70,6 +70,12 @@ namespace lni {
 	}
 
 	template <typename T>
+	void vector<T>::pop_back() {
+		--vec_sz;
+		arr[vec_sz].~T();
+	}
+
+	template <typename T>
 	void vector<T>::emplace_back(T &&val) {
 		if (vec_sz == rsrv_sz) {
 			rsrv_sz <<= 2;

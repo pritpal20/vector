@@ -22,6 +22,7 @@ namespace lni {
 
 			int size();
 			void push_back(const T &);
+			void pop_back();
 			void emplace_back(T &&);
 			void reserve(const int &);
 			void resize(const int &);
