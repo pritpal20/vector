@@ -1,3 +1,5 @@
-a.*
+*.exe
+tester
+tester_dbg
 *.swp
 
