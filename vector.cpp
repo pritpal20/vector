@@ -102,7 +102,7 @@ namespace lni {
 	void vector<T>::resize(const int &_sz) {
 		if (_sz > vec_sz) {
 			if (_sz > rsrv_sz) {
-				rsrv_sz <<= 2;
+				rsrv_sz = _sz;
 				reallocate();
 			}
 			vec_sz = _sz;
