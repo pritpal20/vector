@@ -17,6 +17,9 @@ namespace lni {
 
 			iterator begin();
 			iterator end();
+			T & front();
+			T & back();
+
 			int size();
 			void push_back(const T &);
 			void emplace_back(T &&);

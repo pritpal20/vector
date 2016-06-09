@@ -35,6 +35,16 @@ namespace lni {
 	}
 
 	template <typename T>
+	T & vector<T>::front() {
+		return arr[0];
+	}
+
+	template <typename T>
+	T & vector<T>::back() {
+		return arr[vec_sz - 1];
+	}
+
+	template <typename T>
 	inline void vector<T>::reallocate() {
 		int i;
 		T *tarr = new T[rsrv_sz];

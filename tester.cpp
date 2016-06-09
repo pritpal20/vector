@@ -22,6 +22,10 @@ int main() {
 	 	printf("%d ", n);
 	puts("\n");
 
+	puts("Testing front and back");
+	printf("%d %d", v1.front(), v1.back());
+	puts("\n");
+
 	puts("Testing [] operator overloading ... ");
 	v1[0] = 1;
 	int sz = v1.size();
