@@ -21,6 +21,7 @@ namespace lni {
 			T & back();
 
 			int size();
+			bool empty();
 			void push_back(const T &);
 			void pop_back();
 			void emplace_back(T &&);

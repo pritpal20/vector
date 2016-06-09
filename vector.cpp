@@ -60,6 +60,11 @@ namespace lni {
 	}
 
 	template <typename T>
+	int vector<T>::empty() {
+		return vec_sz == 0;
+	}
+
+	template <typename T>
 	void vector<T>::push_back(const T &val) {
 		if (vec_sz == rsrv_sz) {
 			rsrv_sz <<= 2;
