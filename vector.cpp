@@ -8,10 +8,8 @@ namespace lni {
 
 	template <typename T>
 	vector<T>::vector(std::initializer_list<T> &&lst) {
-		if (lst.size() > rsrv_sz) {
-			rsrv_sz = lst.size() << 2;
-			reallocate();
-		}
+		rsrv_sz = lst.size() << 2;
+		arr = new T[rsrv_sz];
 		for (auto &item: lst)
 			arr[vec_sz++] = item;
 	}
@@ -19,6 +17,11 @@ namespace lni {
 	template <typename T>
 	vector<T>::~vector() {
 		delete [] arr;
+	}
+
+	template <typename T>
+	inline int & vector<T>::operator [](const int &idx) {
+		return arr[idx];
 	}
 
 	template <typename T>
