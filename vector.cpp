@@ -64,5 +64,29 @@ namespace lni {
 		}
 	}
 
+	template <typename T>
+	void vector<T>::resize(const int &_sz) {
+		if (_sz > vec_sz) {
+			if (_sz > rsrv_sz) {
+				rsrv_sz <<= 2;
+				reallocate();
+			}
+			vec_sz = _sz;
+		} else {
+			int i;
+			for (i = vec_sz; i < _sz; ++i)
+				arr[i].~T();
+			vec_sz = _sz;
+		}
+	}
+
+	template <typename T>
+	void vector<T>::clear() {
+		int i;
+		for (i = 0; i < vec_sz; ++i)
+			arr[i].~T();
+		vec_sz = 0;
+	}
+
 }
 

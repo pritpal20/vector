@@ -1,4 +1,5 @@
 #include "vector.h"
+#include <cstdio>
 #include <vector>
 #include <ctime>
 
@@ -11,8 +12,14 @@ int main() {
 	for (i = 0; i < 10000000; ++i)
 		v1.push_back(i);
 	printf("lni::vector %.3fs\n", (double)(clock() - st) / CLOCKS_PER_SEC);
-//	for (auto &n: v1)
-//	 	printf("%d ", n);
+	
+	v1.resize(5);
+	for (auto &n: v1)
+	 	printf("%d ", n);
+	v1.clear();
+	for (auto &n: v1)
+		printf("%d ", n);
+	puts("");
 	
 	st = clock();
 	std::vector<int> v2;

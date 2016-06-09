@@ -17,6 +17,8 @@ namespace lni {
 			void push_back(const T &);
 			void emplace_back(T &&);
 			void reserve(const int &);
+			void resize(const int &);
+			void clear();
 		private:
 			int rsrv_sz = 4;
 			int vec_sz = 0;
