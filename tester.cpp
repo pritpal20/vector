@@ -60,6 +60,13 @@ int main() {
 		printf("%d ", n);
 	puts("\n");
 
+
+	puts("Testing constructors ... ");
+	lni::vector<double> v3(5, 2.0);
+	v3[0] = 1.0; v3[4] = 3.0;
+	for (auto &f: v3)
+		printf("%.3f ", f);
+	puts("\n");
 #endif
 	
 	st = clock();

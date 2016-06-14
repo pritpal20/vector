@@ -7,11 +7,31 @@ namespace lni {
 	}
 
 	template <typename T>
-	vector<T>::vector(std::initializer_list<T> &&lst) {
+	vector<T>::vector(int count) {
+		int i;
+		rsrv_sz = count << 2;
+		arr = new T[rsrv_sz];
+		for (i = 0; i < count; ++i)
+			arr[i] = T();
+		vec_sz = count;
+	}
+
+	template <typename T>
+	vector<T>::vector(int count, const T &val) {
+		int i;
+		rsrv_sz = count << 2;
+		arr = new T[rsrv_sz];
+		for (i = 0; i < count; ++i)
+			arr[i] = val;
+		vec_sz = count;
+	}
+
+	template <typename T>
+	vector<T>::vector(std::initializer_list<T> lst) {
 		rsrv_sz = lst.size() << 2;
 		arr = new T[rsrv_sz];
 		for (auto &item: lst)
-			arr[vec_sz++] = std::move(item);
+			arr[vec_sz++] = item;
 	}
 
 	template <typename T>
