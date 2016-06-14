@@ -1,6 +1,6 @@
 # vector
 
-A proof-of-concept/partial implementation of std::vector, but 2.3x faster.  
+:purple_heart: A 2.3x faster std::vector proof-of-concept/partial implementation.
 This is meant to show you why you should ditch C++ STLs when performance is critical.
 
 It's just a proof-of-concept (for now at least),  
@@ -28,7 +28,7 @@ int main() {
 ## Test Results
 
 Homebrew-gcc 6.1.0  
-`g++ tester.cpp && ./a.out`
+`make && ./tester`
 
 ```
 lni::vector 0.105s
