@@ -34,7 +34,7 @@ int main() {
 
 ---
 
-> Homebrew-gcc 6.1.1, Mac OSX El Capitan, Macbook Air Early 2014
+> Homebrew-gcc 6.1.0, Mac OSX El Capitan, Macbook Air Early 2014
 
 ```
 lni::vector 0.105s
