@@ -66,6 +66,10 @@ int main() {
 	v3[0] = 1.0; v3[4] = 3.0;
 	for (auto &f: v3)
 		printf("%.3f ", f);
+	puts("");
+	lni::vector<double> v4(v3);
+	for (auto &f: v4)
+		printf("%.3f ", f);
 	puts("\n");
 #endif
 	

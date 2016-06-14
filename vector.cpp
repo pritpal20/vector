@@ -7,6 +7,26 @@ namespace lni {
 	}
 
 	template <typename T>
+	vector<T>::vector(const vector<T> &other) {
+		int i;
+		rsrv_sz = other.rsrv_sz;
+		arr = new T[rsrv_sz];
+		for (i = 0; i < other.vec_sz; ++i)
+			arr[i] = other.arr[i];
+		vec_sz = other.vec_sz;
+	}
+
+	template <typename T>
+	vector<T>::vector(vector<T> &&other) {
+		int i;
+		rsrv_sz = other.rsrv_sz;
+		arr = new T[rsrv_sz];
+		for (i = 0; i < other.vec_sz; ++i)
+			arr[i] = std::move(other.arr[i]);
+		vec_sz = other.vec_sz;
+	}
+
+	template <typename T>
 	vector<T>::vector(int count) {
 		int i;
 		rsrv_sz = count << 2;

@@ -13,6 +13,8 @@ namespace lni {
 			vector(int count);
 			vector(int count, const T &val);
 			vector(std::initializer_list<T>);
+			vector(const vector<T> &);
+			vector(vector<T> &&);
 			~vector();
 			typedef T *iterator;
 			inline T & operator [](const int &);
