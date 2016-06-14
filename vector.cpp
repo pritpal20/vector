@@ -105,7 +105,17 @@ namespace lni {
 	}
 
 	template <typename T>
+	typename vector<T>::const_iterator vector<T>::cbegin() {
+		return arr;
+	}
+
+	template <typename T>
 	typename vector<T>::iterator vector<T>::end() {
+		return arr + vec_sz;
+	}
+
+	template <typename T>
+	typename vector<T>::const_iterator vector<T>::cend() {
 		return arr + vec_sz;
 	}
 

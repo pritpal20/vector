@@ -20,10 +20,13 @@ namespace lni {
 			lni::vector<T> & operator = (lni::vector<T> &&);
 			lni::vector<T> & operator = (std::initializer_list<T>);
 			typedef T *iterator;
+			typedef const T *const_iterator;
 			inline T & operator [](const int &);
 
 			iterator begin();
+			const_iterator cbegin();
 			iterator end();
+			const_iterator cend();
 			T & front();
 			T & back();
 
