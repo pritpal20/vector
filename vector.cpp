@@ -11,7 +11,7 @@ namespace lni {
 		rsrv_sz = lst.size() << 2;
 		arr = new T[rsrv_sz];
 		for (auto &item: lst)
-			arr[vec_sz++] = item;
+			arr[vec_sz++] = std::move(item);
 	}
 
 	template <typename T>
@@ -86,7 +86,7 @@ namespace lni {
 			rsrv_sz <<= 2;
 			reallocate();
 		}
-		arr[vec_sz] = val;
+		arr[vec_sz] = std::move(val);
 		++vec_sz;
 	}
 
