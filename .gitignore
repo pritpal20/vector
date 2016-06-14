@@ -2,4 +2,4 @@
 tester
 dbg
 *.swp
-
+*.stackdump
