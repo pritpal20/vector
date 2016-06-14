@@ -1,6 +1,6 @@
 .PHONY: clean
 
-all: tester
+all: tester dbg
 
 tester: vector.h vector.cpp tester.cpp
 	g++ -std=c++11 tester.cpp -o tester
