@@ -3,6 +3,8 @@
 :purple_heart: A 2.3x faster std::vector proof-of-concept/partial implementation.  
 This is meant to show you why you should ditch C++ STLs when performance is critical.
 
+[![Build Status](https://travis-ci.org/lnishan/vector.svg?branch=master)](https://travis-ci.org/lnishan/vector)
+
 It's just a proof-of-concept (for now at least),  
 which means it's **NOT** standard-compliant and lacks many, many implementation details.
 
