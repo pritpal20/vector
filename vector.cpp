@@ -150,6 +150,16 @@ namespace lni {
 	}
 
 	template <typename T>
+	void vector<T>::push_back(T &&val) {
+		if (vec_sz == rsrv_sz) {
+			rsrv_sz <<= 2;
+			reallocate();
+		}
+		arr[vec_sz] = std::move(val);
+		++vec_sz;
+	}
+
+	template <typename T>
 	void vector<T>::pop_back() {
 		--vec_sz;
 		arr[vec_sz].~T();

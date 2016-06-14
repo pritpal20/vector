@@ -30,6 +30,7 @@ namespace lni {
 			int size();
 			bool empty();
 			void push_back(const T &);
+			void push_back(T &&);
 			void pop_back();
 			void emplace_back(T &&);
 			void reserve(const int &);
