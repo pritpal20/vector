@@ -71,6 +71,16 @@ int main() {
 	for (auto &f: v4)
 		printf("%.3f ", f);
 	puts("\n");
+
+	puts("Testing assignment operators ... ");
+	lni::vector<double> v5 = v3;
+	for (auto &f: v5)
+		printf("%.3f ", f);
+	puts("");
+	lni::vector<double> v6 = {3.0, 2.0, 2.0, 2.0, 1.0};
+	for (auto &f: v6)
+		printf("%.3f ", f);
+	puts("\n");
 #endif
 	
 	st = clock();

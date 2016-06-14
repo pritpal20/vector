@@ -7,7 +7,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	vector<T>::vector(const vector<T> &other) {
+	vector<T>::vector(const lni::vector<T> &other) {
 		int i;
 		rsrv_sz = other.rsrv_sz;
 		arr = new T[rsrv_sz];
@@ -17,7 +17,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	vector<T>::vector(vector<T> &&other) {
+	vector<T>::vector(lni::vector<T> &&other) {
 		int i;
 		rsrv_sz = other.rsrv_sz;
 		arr = new T[rsrv_sz];
@@ -57,6 +57,41 @@ namespace lni {
 	template <typename T>
 	vector<T>::~vector() {
 		delete [] arr;
+	}
+
+	template <typename T>
+	lni::vector<T> & vector<T>::operator = (const lni::vector<T> &other) {
+		int i;
+		if (rsrv_sz < other.vec_sz) {
+			rsrv_sz = other.vec_sz << 2;
+			reallocate();
+		}
+		for (i = 0; i < other.vec_sz; ++i)
+			arr[i] = other.arr[i];
+		vec_sz = other.vec_sz;
+	}
+
+	template <typename T>
+	lni::vector<T> & vector<T>::operator = (lni::vector<T> &&other) {
+		int i;
+		if (rsrv_sz < other.vec_sz) {
+			rsrv_sz = other.vec_sz << 2;
+			reallocate();
+		}
+		for (i = 0; i < other.vec_sz; ++i)
+			arr[i] = std::move(other.arr[i]);
+		vec_sz = other.vec_sz;
+	}
+
+	template <typename T>
+	lni::vector<T> & vector<T>::operator = (std::initializer_list<T> lst) {
+		if (rsrv_sz < lst.size()) {
+			rsrv_sz = lst.size() << 2;
+			reallocate();
+		}
+		vec_sz = 0;
+		for (auto &item: lst)
+			arr[vec_sz++] = item;
 	}
 
 	template <typename T>
