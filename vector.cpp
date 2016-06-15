@@ -220,6 +220,14 @@ namespace lni {
 	}
 
 	template <typename T>
+	void vector<T>::reserve(typename vector<T>::size_type _sz) {
+		if (_sz > rsrv_sz) {
+			rsrv_sz = _sz;
+			reallocate();
+		}
+	}
+
+	template <typename T>
 	typename vector<T>::size_type vector<T>::capacity() const {
 		return rsrv_sz;
 	}
@@ -408,14 +416,6 @@ namespace lni {
 		}
 		arr[vec_sz] = std::move(val);
 		++vec_sz;
-	}
-
-	template <typename T>
-	void vector<T>::reserve(typename vector<T>::size_type _sz) {
-		if (_sz > rsrv_sz) {
-			rsrv_sz = _sz;
-			reallocate();
-		}
 	}
 
 	template <typename T>

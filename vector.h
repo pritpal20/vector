@@ -53,6 +53,7 @@ namespace lni {
 			size_type size() const;
 			bool empty() const;
 			size_type max_size() const;
+			void reserve(size_type);
 			size_type capacity() const;
 			void shrink_to_fit();
 
@@ -72,7 +73,6 @@ namespace lni {
 			void push_back(T &&);
 			void pop_back();
 			void emplace_back(T &&);
-			void reserve(size_type);
 			void resize(size_type);
 			void clear();
 			void swap(lni::vector<T> &);
