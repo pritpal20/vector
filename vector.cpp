@@ -183,6 +183,12 @@ namespace lni {
 		return rsrv_sz;
 	}
 
+	template <typename T>
+	void vector<T>::shrink_to_fit() {
+		rsrv_sz = vec_sz;
+		reallocate();
+	}
+
 
 	template <typename T>
 	void vector<T>::assign(typename vector<T>::size_type count, const T &value) {

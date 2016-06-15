@@ -42,6 +42,7 @@ namespace lni {
 			bool empty() const;
 			size_type max_size() const;
 			size_type capacity() const;
+			void shrink_to_fit();
 
 			void assign(size_type, const T &value);
 			template <class InputIt> void assign(InputIt, InputIt);

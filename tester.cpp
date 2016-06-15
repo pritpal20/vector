@@ -127,6 +127,12 @@ int main() {
 		printf(" %.3f", f);
 	puts("\n");
 
+	puts("Testing shrink_to_fit ... ");
+	printf("Before: %llu, %llu\n", v7.size(), v7.capacity());
+	v7.shrink_to_fit();
+	printf("After: %llu, %llu\n", v7.size(), v7.capacity());
+	puts("");
+
 	puts("Testing operators ... ");
 	lni::vector<double> v8(v7);
 	printf(" v6 == v8: %d\n", v6 == v8);
