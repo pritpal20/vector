@@ -33,7 +33,7 @@ namespace lni {
 			T & front();
 			T & back();
 
-			int size();
+			size_type size();
 			bool empty();
 
 			void assign(size_type, const T &value);
