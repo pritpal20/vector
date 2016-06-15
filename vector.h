@@ -32,6 +32,7 @@ namespace lni {
 
 			int size();
 			bool empty();
+
 			iterator insert(const_iterator, const T &);
 			iterator insert(const_iterator, T &&);
 			iterator insert(const_iterator, int, const T&);
