@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <utility>
+#include <stdexcept>
 
 #ifndef LNI_VECTOR
 #define LNI_VECTOR
@@ -27,9 +28,12 @@ namespace lni {
 			lni::vector<T> & operator = (lni::vector<T> &&);
 			lni::vector<T> & operator = (std::initializer_list<T>);
 
+			T & at(size_type);
+			const T & at(size_type) const;
+			inline T & operator [](size_type);
+			inline const T & operator [](size_type) const;
 			T & front();
 			T & back();
-			inline T & operator [](size_type);
 			T * data();
 			const T * data() const; 
 

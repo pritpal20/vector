@@ -106,7 +106,28 @@ namespace lni {
 
 	
 	template <typename T>
+	T & vector<T>::at(size_type pos) {
+		if (pos < vec_sz)
+			return arr[pos];
+		else
+			throw std::out_of_range("accessed position is out of range");
+	}
+
+	template <typename T>
+	const T & vector<T>::at(size_type pos) const {
+		if (pos < vec_sz)
+			return arr[pos];
+		else
+			throw std::out_of_range("accessed position is out of range");
+	}
+
+	template <typename T>
 	inline T & vector<T>::operator [](typename vector<T>::size_type idx) {
+		return arr[idx];
+	}
+
+	template <typename T>
+	inline const T & vector<T>::operator [](typename vector<T>::size_type idx) const {
 		return arr[idx];
 	}
 
