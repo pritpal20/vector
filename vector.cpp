@@ -109,6 +109,17 @@ namespace lni {
 		return arr[idx];
 	}
 
+
+	template <typename T>
+	T * vector<T>::data() {
+		return arr;
+	}
+
+	template <typename T>
+	const T * vector<T>::data() const {
+		return arr;
+	}
+
 	template <typename T>
 	typename vector<T>::iterator vector<T>::begin() {
 		return arr;

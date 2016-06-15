@@ -26,6 +26,8 @@ namespace lni {
 			lni::vector<T> & operator = (std::initializer_list<T>);
 			inline T & operator [](size_type);
 
+			T * data();
+			const T * data() const; 
 			iterator begin();
 			const_iterator cbegin();
 			iterator end();
