@@ -52,6 +52,10 @@ namespace lni {
 
 			bool operator == (const lni::vector<T> &) const;
 			bool operator != (const lni::vector<T> &) const;
+			bool operator < (const lni::vector<T> &) const;
+			bool operator <= (const lni::vector<T> &) const;
+			bool operator > (const lni::vector<T> &) const;
+			bool operator >= (const lni::vector<T> &) const;
 		private:
 			int rsrv_sz = 4;
 			int vec_sz = 0;

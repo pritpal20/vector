@@ -337,7 +337,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	bool vector<T>::operator == (const lni::vector<T> &rhs)const {
+	bool vector<T>::operator == (const lni::vector<T> &rhs) const {
 		if (vec_sz != rhs.vec_sz) return false;
 		int i;
 		for (i = 0; i < vec_sz; ++i)
@@ -347,13 +347,49 @@ namespace lni {
 	}
 
 	template <typename T>
-	bool vector<T>::operator != (const lni::vector<T> &rhs)const {
+	bool vector<T>::operator != (const lni::vector<T> &rhs) const {
 		if (vec_sz != rhs.vec_sz) return true;
 		int i;
 		for (i = 0; i < vec_sz; ++i)
 			if (arr[i] != rhs.arr[i])
 				return true;
 		return false;
+	}
+
+	template <typename T>
+	bool vector<T>::operator < (const lni::vector<T> &rhs) const {
+		int i, j, ub = vec_sz < rhs.vec_sz ? vec_sz : rhs.vec_sz;
+		for (i = 0; i < ub; ++i)
+			if (arr[i] != rhs.arr[i])
+				return arr[i] < rhs.arr[i];
+		return vec_sz < rhs.vec_sz;
+	}
+
+	template <typename T>
+	bool vector<T>::operator <= (const lni::vector<T> &rhs) const {
+		int i, j, ub = vec_sz < rhs.vec_sz ? vec_sz : rhs.vec_sz;
+		for (i = 0; i < ub; ++i)
+			if (arr[i] != rhs.arr[i])
+				return arr[i] < rhs.arr[i];
+		return vec_sz <= rhs.vec_sz;
+	}
+
+	template <typename T>
+	bool vector<T>::operator > (const lni::vector<T> &rhs) const {
+		int i, j, ub = vec_sz < rhs.vec_sz ? vec_sz : rhs.vec_sz;
+		for (i = 0; i < ub; ++i)
+			if (arr[i] != rhs.arr[i])
+				return arr[i] > rhs.arr[i];
+		return vec_sz > rhs.vec_sz;
+	}
+
+	template <typename T>
+	bool vector<T>::operator >= (const lni::vector<T> &rhs) const {
+		int i, j, ub = vec_sz < rhs.vec_sz ? vec_sz : rhs.vec_sz;
+		for (i = 0; i < ub; ++i)
+			if (arr[i] != rhs.arr[i])
+				return arr[i] > rhs.arr[i];
+		return vec_sz >= rhs.vec_sz;
 	}
 }
 
