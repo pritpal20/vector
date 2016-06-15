@@ -149,6 +149,86 @@ namespace lni {
 		return vec_sz == 0;
 	}
 
+
+	template <typename T>
+	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, const T &val) {
+		int i, idx = it - arr;
+		if (vec_sz == rsrv_sz) {
+			rsrv_sz <<= 2;
+			reallocate();
+		}
+		for (i = vec_sz - 1; i >= idx; --i)
+			arr[i + 1] = arr[i];
+		arr[idx] = val;
+		++vec_sz;
+		return arr + idx;
+	}
+
+	template <typename T>
+	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, T &&val) {
+		int i, idx = it - arr;
+		if (vec_sz == rsrv_sz) {
+			rsrv_sz <<= 2;
+			reallocate();
+		}
+		for (i = vec_sz - 1; i >= idx; --i)
+			arr[i + 1] = arr[i];
+		arr[idx] = std::move(val);
+		++vec_sz;
+		return arr + idx;
+	}
+
+	template <typename T>
+	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, int cnt, const T &val) {
+		int i, idx = it - arr;
+		if (!cnt) return arr + idx;
+		if (vec_sz + cnt > rsrv_sz) {
+			rsrv_sz = vec_sz + cnt;
+			reallocate();
+		}
+		for (i = vec_sz - 1; i >= idx; --i)
+			arr[i + cnt] = arr[i];
+		for (i = idx; i < idx + cnt; ++i)
+			arr[i] = val;
+		vec_sz += cnt;
+		return arr + idx;
+	}
+
+	template <typename T>
+	template <class InputIt>
+	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, InputIt first, InputIt last) {
+		int i, idx = it - arr, cnt = last - first;
+		if (!cnt) return arr + idx;
+		if (vec_sz + cnt > rsrv_sz) {
+			rsrv_sz = vec_sz + cnt;
+			reallocate();
+		}
+		for (i = vec_sz - 1; i >= idx; --i)
+			arr[i + cnt] = arr[i];
+		InputIt iit = first;
+		for (i = idx; iit != last; ++i, ++iit)
+			arr[i] = *iit;
+		vec_sz += cnt;
+		return arr + idx;
+	}
+
+	template <typename T>
+	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, std::initializer_list<T> lst) {
+		int i, idx = it - arr, cnt = lst.size();
+		if (!cnt) return arr + idx;
+		if (vec_sz + cnt > rsrv_sz) {
+			rsrv_sz = vec_sz + cnt;
+			reallocate();
+		}
+		for (i = vec_sz - 1; i >= idx; --i)
+			arr[i + cnt] = arr[i];
+		i = idx;
+		for (auto &item: lst)
+			arr[i++] = item;
+		vec_sz += cnt;
+		return arr + idx;
+	}
+
 	template <typename T>
 	void vector<T>::push_back(const T &val) {
 		if (vec_sz == rsrv_sz) {

@@ -16,6 +16,7 @@ int main() {
 #ifdef DEBUG
 	
 	puts("\n=== Debugging Messages ===\n");
+
 	puts("Testing resize ...");
 	v1.resize(5);
 	for (auto &n: v1)
@@ -81,6 +82,32 @@ int main() {
 	for (auto &f: v6)
 		printf("%.3f ", f);
 	puts("\n");
+
+	puts("Testing insert ... ");
+	auto it = v6.insert(v6.begin() + 1, 2.5);
+	it = v6.insert(v6.begin(), 4.0);
+	for (auto &f: v6)
+		printf("%.3f ", f);
+	puts("\n");
+
+	it = v6.insert(v6.end(), 2, 0.0);
+	it = v6.insert(v6.end() - 2, 3, 0.5);
+	for (auto &f: v6)
+		printf("%.3f ", f);
+	puts("");
+
+	lni::vector<double> v7(2, 5.0);
+	v7.insert(v7.end(), v6.begin(), v6.end());
+	for (auto &f: v7)
+		printf("%.3f ", f);
+	puts("");
+
+	v7.insert(v7.begin(), {8.0, 7.0, 6.0});
+	v7.insert(v7.end(), {-1.0, -2.0, -2.5});
+	for (auto &f: v7)
+		printf("%.3f ", f);
+	puts("\n");
+
 #endif
 	
 	st = clock();
