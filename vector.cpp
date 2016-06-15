@@ -104,11 +104,21 @@ namespace lni {
 			arr[vec_sz++] = item;
 	}
 
+	
 	template <typename T>
 	inline T & vector<T>::operator [](typename vector<T>::size_type idx) {
 		return arr[idx];
 	}
 
+	template <typename T>
+	T & vector<T>::front() {
+		return arr[0];
+	}
+
+	template <typename T>
+	T & vector<T>::back() {
+		return arr[vec_sz - 1];
+	}
 
 	template <typename T>
 	T * vector<T>::data() {
@@ -119,6 +129,7 @@ namespace lni {
 	const T * vector<T>::data() const {
 		return arr;
 	}
+
 
 	template <typename T>
 	typename vector<T>::iterator vector<T>::begin() {
@@ -140,15 +151,6 @@ namespace lni {
 		return arr + vec_sz;
 	}
 
-	template <typename T>
-	T & vector<T>::front() {
-		return arr[0];
-	}
-
-	template <typename T>
-	T & vector<T>::back() {
-		return arr[vec_sz - 1];
-	}
 
 	template <typename T>
 	inline void vector<T>::reallocate() {
@@ -159,15 +161,26 @@ namespace lni {
 		delete [] arr;
 		arr = tarr;
 	}
-	
+
+
 	template <typename T>
-	typename vector<T>::size_type vector<T>::size() {
+	typename vector<T>::size_type vector<T>::size() const {
 		return vec_sz;
 	}
 
 	template <typename T>
-	bool vector<T>::empty() {
+	bool vector<T>::empty() const {
 		return vec_sz == 0;
+	}
+
+	template <typename T>
+	typename vector<T>::size_type vector<T>::max_size() const {
+		return LNI_VECTOR_MAX_SZ;
+	}
+
+	template <typename T>
+	typename vector<T>::size_type vector<T>::capacity() const {
+		return rsrv_sz;
 	}
 
 

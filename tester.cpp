@@ -17,6 +17,9 @@ int main() {
 	
 	puts("\n=== Debugging Messages ===\n");
 
+	printf("max_size() = %llu", v1.max_size());
+	puts("\n");
+
 	puts("Testing resize ... ");
 	v1.resize(5);
 	for (auto &n: v1)

@@ -4,6 +4,8 @@
 #ifndef LNI_VECTOR
 #define LNI_VECTOR
 
+#define LNI_VECTOR_MAX_SZ 500000000
+
 namespace lni {
 
 	template <typename T>
@@ -24,19 +26,22 @@ namespace lni {
 			lni::vector<T> & operator = (const lni::vector<T> &);
 			lni::vector<T> & operator = (lni::vector<T> &&);
 			lni::vector<T> & operator = (std::initializer_list<T>);
-			inline T & operator [](size_type);
 
+			T & front();
+			T & back();
+			inline T & operator [](size_type);
 			T * data();
 			const T * data() const; 
+
 			iterator begin();
 			const_iterator cbegin();
 			iterator end();
 			const_iterator cend();
-			T & front();
-			T & back();
 
-			size_type size();
-			bool empty();
+			size_type size() const;
+			bool empty() const;
+			size_type max_size() const;
+			size_type capacity() const;
 
 			void assign(size_type, const T &value);
 			template <class InputIt> void assign(InputIt, InputIt);
