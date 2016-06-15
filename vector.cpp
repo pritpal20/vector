@@ -232,7 +232,7 @@ namespace lni {
 		size_type i, idx = it - arr;
 		if (!cnt) return arr + idx;
 		if (vec_sz + cnt > rsrv_sz) {
-			rsrv_sz = vec_sz + cnt;
+			rsrv_sz = (vec_sz + cnt) << 2;
 			reallocate();
 		}
 		for (i = vec_sz - 1; i > idx; --i) // idx can be 0
@@ -250,7 +250,7 @@ namespace lni {
 		size_type i, idx = it - arr, cnt = last - first;
 		if (!cnt) return arr + idx;
 		if (vec_sz + cnt > rsrv_sz) {
-			rsrv_sz = vec_sz + cnt;
+			rsrv_sz = (vec_sz + cnt) << 2;
 			reallocate();
 		}
 		for (i = vec_sz - 1; i > idx; --i)
@@ -267,7 +267,7 @@ namespace lni {
 		size_type i, idx = it - arr, cnt = lst.size();
 		if (!cnt) return arr + idx;
 		if (vec_sz + cnt > rsrv_sz) {
-			rsrv_sz = vec_sz + cnt;
+			rsrv_sz = (vec_sz + cnt) << 2;
 			reallocate();
 		}
 		for (i = vec_sz - 1; i > idx; --i)
