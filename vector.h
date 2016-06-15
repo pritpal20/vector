@@ -38,6 +38,8 @@ namespace lni {
 			iterator insert(const_iterator, int, const T&);
 			template <class InputIt> iterator insert(const_iterator, InputIt, InputIt);
 			iterator insert(const_iterator, std::initializer_list<T>);
+			iterator erase(const_iterator);
+			iterator erase(const_iterator, const_iterator);
 
 			void push_back(const T &);
 			void push_back(T &&);

@@ -108,6 +108,13 @@ int main() {
 		printf("%.3f ", f);
 	puts("\n");
 
+	puts("Testing erase ... ");
+	v7.erase(v7.begin());
+	v7.erase(v7.begin() + 2, v7.begin() + 4);
+	for (auto &f: v7)
+		printf("%.3f ", f);
+	puts("\n");
+
 #endif
 	
 	st = clock();

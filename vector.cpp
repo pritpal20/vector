@@ -205,9 +205,8 @@ namespace lni {
 		}
 		for (i = vec_sz - 1; i >= idx; --i)
 			arr[i + cnt] = arr[i];
-		InputIt iit = first;
-		for (i = idx; iit != last; ++i, ++iit)
-			arr[i] = *iit;
+		for (i = idx; first != last; ++i, ++first)
+			arr[i] = *first;
 		vec_sz += cnt;
 		return arr + idx;
 	}
@@ -227,6 +226,29 @@ namespace lni {
 			arr[i++] = item;
 		vec_sz += cnt;
 		return arr + idx;
+	}
+
+	template <typename T>
+	typename vector<T>::iterator vector<T>::erase(typename vector<T>::const_iterator it) {
+		int i, idx = it - arr;
+		iterator iit = arr + idx;
+		(*iit).~T();
+		for (i = idx + 1; i < vec_sz; ++i)
+			arr[i - 1] = arr[i];
+		--vec_sz;
+		return iit;
+	}
+
+	template <typename T>
+	typename vector<T>::iterator vector<T>::erase(typename vector<T>::const_iterator first, typename vector<T>::const_iterator last) {
+		int i, idx_f = first - arr, idx_l = last - arr, cnt = last - first;
+		if (!cnt) return arr + idx_f;
+		for (i = idx_f; i != idx_l; ++i)
+			arr[i].~T();
+		for (i = idx_l; i < vec_sz; ++i)
+			arr[i - cnt] = arr[i];
+		vec_sz -= cnt;
+		return arr + idx_f;
 	}
 
 	template <typename T>
