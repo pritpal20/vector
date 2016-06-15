@@ -49,6 +49,9 @@ namespace lni {
 			void resize(const int &);
 			void clear();
 			void swap(lni::vector<T> &);
+
+			bool operator == (const lni::vector<T> &) const;
+			bool operator != (const lni::vector<T> &) const;
 		private:
 			int rsrv_sz = 4;
 			int vec_sz = 0;

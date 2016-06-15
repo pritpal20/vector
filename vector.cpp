@@ -335,5 +335,25 @@ namespace lni {
 		vec_sz = sz;
 		delete [] tmp;
 	}
+
+	template <typename T>
+	bool vector<T>::operator == (const lni::vector<T> &rhs)const {
+		if (vec_sz != rhs.vec_sz) return false;
+		int i;
+		for (i = 0; i < vec_sz; ++i)
+			if (arr[i] != rhs.arr[i])
+				return false;
+		return true;
+	}
+
+	template <typename T>
+	bool vector<T>::operator != (const lni::vector<T> &rhs)const {
+		if (vec_sz != rhs.vec_sz) return true;
+		int i;
+		for (i = 0; i < vec_sz; ++i)
+			if (arr[i] != rhs.arr[i])
+				return true;
+		return false;
+	}
 }
 

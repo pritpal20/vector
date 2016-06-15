@@ -115,6 +115,13 @@ int main() {
 		printf("%.3f ", f);
 	puts("\n");
 
+	puts("Testing operators ... ");
+	lni::vector<double> v8(v7);
+	printf("v7 == v8: %d\n", v7 == v8);
+	printf("v7 != v8: %d\n", v7 != v8);
+	printf("v6 == v8: %d\n", v6 == v8);
+	printf("v6 != v8: %d\n", v6 != v8);
+
 #endif
 	
 	st = clock();
