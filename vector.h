@@ -9,9 +9,13 @@ namespace lni {
 	template <typename T>
 	class vector {
 		public:
+			typedef T *iterator;
+			typedef const T *const_iterator;
+			typedef std::size_t size_type;
+
 			vector();
-			vector(int count);
-			vector(int count, const T &val);
+			vector(size_type count);
+			vector(size_type count, const T &val);
 			vector(std::initializer_list<T>);
 			vector(const lni::vector<T> &);
 			vector(lni::vector<T> &&);
@@ -19,9 +23,7 @@ namespace lni {
 			lni::vector<T> & operator = (const lni::vector<T> &);
 			lni::vector<T> & operator = (lni::vector<T> &&);
 			lni::vector<T> & operator = (std::initializer_list<T>);
-			typedef T *iterator;
-			typedef const T *const_iterator;
-			inline T & operator [](const int &);
+			inline T & operator [](size_type);
 
 			iterator begin();
 			const_iterator cbegin();
@@ -35,7 +37,7 @@ namespace lni {
 
 			iterator insert(const_iterator, const T &);
 			iterator insert(const_iterator, T &&);
-			iterator insert(const_iterator, int, const T&);
+			iterator insert(const_iterator, size_type, const T&);
 			template <class InputIt> iterator insert(const_iterator, InputIt, InputIt);
 			iterator insert(const_iterator, std::initializer_list<T>);
 			iterator erase(const_iterator);
@@ -45,8 +47,8 @@ namespace lni {
 			void push_back(T &&);
 			void pop_back();
 			void emplace_back(T &&);
-			void reserve(const int &);
-			void resize(const int &);
+			void reserve(size_type);
+			void resize(size_type);
 			void clear();
 			void swap(lni::vector<T> &);
 
@@ -57,8 +59,8 @@ namespace lni {
 			bool operator > (const lni::vector<T> &) const;
 			bool operator >= (const lni::vector<T> &) const;
 		private:
-			int rsrv_sz = 4;
-			int vec_sz = 0;
+			size_type rsrv_sz = 4;
+			size_type vec_sz = 0;
 			T *arr;
 
 			inline void reallocate();

@@ -27,7 +27,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	vector<T>::vector(int count) {
+	vector<T>::vector(typename vector<T>::size_type count) {
 		int i;
 		rsrv_sz = count << 2;
 		arr = new T[rsrv_sz];
@@ -37,7 +37,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	vector<T>::vector(int count, const T &val) {
+	vector<T>::vector(typename vector<T>::size_type count, const T &val) {
 		int i;
 		rsrv_sz = count << 2;
 		arr = new T[rsrv_sz];
@@ -95,7 +95,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	inline T & vector<T>::operator [](const int &idx) {
+	inline T & vector<T>::operator [](typename vector<T>::size_type idx) {
 		return arr[idx];
 	}
 
@@ -179,7 +179,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, int cnt, const T &val) {
+	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, typename vector<T>::size_type cnt, const T &val) {
 		int i, idx = it - arr;
 		if (!cnt) return arr + idx;
 		if (vec_sz + cnt > rsrv_sz) {
@@ -288,7 +288,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	void vector<T>::reserve(const int &_sz) {
+	void vector<T>::reserve(typename vector<T>::size_type _sz) {
 		if (_sz > rsrv_sz) {
 			rsrv_sz = _sz;
 			reallocate();
@@ -296,7 +296,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	void vector<T>::resize(const int &_sz) {
+	void vector<T>::resize(typename vector<T>::size_type _sz) {
 		if (_sz > vec_sz) {
 			if (_sz > rsrv_sz) {
 				rsrv_sz = _sz;
