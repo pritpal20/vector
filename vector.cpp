@@ -158,7 +158,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	typename vector<T>::const_iterator vector<T>::cbegin() {
+	typename vector<T>::const_iterator vector<T>::cbegin() const {
 		return arr;
 	}
 
@@ -168,8 +168,28 @@ namespace lni {
 	}
 
 	template <typename T>
-	typename vector<T>::const_iterator vector<T>::cend() {
+	typename vector<T>::const_iterator vector<T>::cend() const {
 		return arr + vec_sz;
+	}
+
+	template <typename T>
+	typename vector<T>::reverse_iterator vector<T>::rbegin() {
+		return reverse_iterator(arr + vec_sz);
+	}
+
+	template <typename T>
+	typename vector<T>::const_reverse_iterator vector<T>::crbegin() const {
+		return reverse_iterator(arr + vec_sz);
+	}
+
+	template <typename T>
+	typename vector<T>::reverse_iterator vector<T>::rend() {
+		return reverse_iterator(arr);
+	}
+	
+	template <typename T>
+	typename vector<T>::const_reverse_iterator vector<T>::crend() const {
+		return reverse_iterator(arr);
 	}
 
 

@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <utility>
+#include <iterator>
 #include <stdexcept>
 
 #ifndef LNI_VECTOR
@@ -15,6 +16,8 @@ namespace lni {
 			typedef T *iterator;
 			typedef const T *const_iterator;
 			typedef std::size_t size_type;
+			typedef std::reverse_iterator<iterator> reverse_iterator;
+			typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
 			vector();
 			vector(size_type count);
@@ -38,9 +41,14 @@ namespace lni {
 			const T * data() const; 
 
 			iterator begin();
-			const_iterator cbegin();
+			const_iterator cbegin() const;
 			iterator end();
-			const_iterator cend();
+			const_iterator cend() const;
+			reverse_iterator rbegin();
+			const_reverse_iterator crbegin() const;
+			reverse_iterator rend();
+			const_reverse_iterator crend() const;
+
 
 			size_type size() const;
 			bool empty() const;

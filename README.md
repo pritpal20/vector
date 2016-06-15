@@ -1,14 +1,14 @@
 # vector
 
-:purple_heart: A 2.3x faster std::vector proof-of-concept/partial implementation.  
+:purple_heart: A 2.3x faster `std::vector` implementation ((minus Allocator)).
 
 [![Build Status](https://travis-ci.org/lnishan/vector.svg?branch=master)](https://travis-ci.org/lnishan/vector)
 
 This is meant to show you why you should ditch C++ STLs when performance is critical.
 
-It's just a proof-of-concept (for now at least),  
-which means it's **NOT** standard-compliant and lacks many, many implementation details.
-
+It should be a drop-in replacement for `std:vector` in most cases,  
+but note that `lni::vector` can generate redundancies up to 3x the data size (4x total).  
+(Consider using `shrink_to_fit()` to remove redundancies, but beware that a memory reallocation would take place.)
 
 ## Usage
 
@@ -70,4 +70,4 @@ std::vector 0.239s
 
 [![Creative Commons Attribution 4.0 International](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
 
-lni::vector by Jasmine "lnishan" Chen is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+`lni::vector` by Jasmine "lnishan" Chen is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).

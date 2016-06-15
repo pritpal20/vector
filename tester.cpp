@@ -150,8 +150,12 @@ int main() {
 	printf(" v6 > v8: %d\n", v6 > v8);
 	printf(" v8 >= v6: %d\n", v8 >= v6);
 	printf(" v7 > v8: %d\n", v7 > v8);
-	printf(" v8 >= v7: %d\n", v8 >= v7);
-	
+	printf(" v8 >= v7: %d\n", v8 >= v7);	
+	puts("\n");
+
+	puts("Testing reverse_iterator ... ");
+	for (auto it = v8.rbegin(); it != v8.rend(); ++it)
+		printf(" %.3f", *it);
 	puts("\n");
 
 #endif
