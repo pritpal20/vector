@@ -16,6 +16,7 @@ namespace lni {
 			vector();
 			vector(size_type count);
 			vector(size_type count, const T &val);
+			template <class InputIt> vector(InputIt first, InputIt last);
 			vector(std::initializer_list<T>);
 			vector(const lni::vector<T> &);
 			vector(lni::vector<T> &&);
@@ -34,6 +35,10 @@ namespace lni {
 
 			int size();
 			bool empty();
+
+			void assign(size_type, const T &value);
+			template <class InputIt> void assign(InputIt, InputIt);
+			void assign(std::initializer_list<T>);
 
 			iterator insert(const_iterator, const T &);
 			iterator insert(const_iterator, T &&);

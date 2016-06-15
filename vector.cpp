@@ -47,6 +47,17 @@ namespace lni {
 	}
 
 	template <typename T>
+	template <class InputIt>
+	vector<T>::vector(InputIt first, InputIt last) {
+		int i;
+		size_type count = last - first;
+		rsrv_sz = count << 2;
+		arr = new T[rsrv_sz];
+		for (i = 0; i < count; ++i, ++first)
+			arr[i] = *first;
+	}
+
+	template <typename T>
 	vector<T>::vector(std::initializer_list<T> lst) {
 		rsrv_sz = lst.size() << 2;
 		arr = new T[rsrv_sz];
@@ -149,6 +160,43 @@ namespace lni {
 		return vec_sz == 0;
 	}
 
+
+	template <typename T>
+	void vector<T>::assign(typename vector<T>::size_type count, const T &value) {
+		size_type i;
+		if (count > rsrv_sz) {
+			rsrv_sz = count << 2;
+			reallocate();
+		}
+		for (i = 0; i < count; ++i)
+			arr[i] = value;
+		vec_sz = count;
+	}
+
+	template <typename T>
+	template <class InputIt>
+	void vector<T>::assign(InputIt first, InputIt last) {
+		size_type i, count = last - first;
+		if (count > rsrv_sz) {
+			rsrv_sz = count << 2;
+			reallocate();
+		}
+		for (i = 0; i < count; ++i, ++first)
+			arr[i] = *first;
+		vec_sz = count;
+	}
+
+	template <typename T>
+	void vector<T>::assign(std::initializer_list<T> lst) {
+		size_type i, count = lst.size();
+		if (count > rsrv_sz) {
+			rsrv_sz = count << 2;
+			reallocate();
+		}
+		i = 0;
+		for (auto &item: lst)
+			arr[i++] = item;
+	}
 
 	template <typename T>
 	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, const T &val) {

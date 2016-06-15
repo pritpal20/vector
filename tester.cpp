@@ -17,17 +17,24 @@ int main() {
 	
 	puts("\n=== Debugging Messages ===\n");
 
-	puts("Testing resize ...");
+	puts("Testing resize ... ");
 	v1.resize(5);
 	for (auto &n: v1)
 	 	printf(" %d", n);
 	puts("\n");
+	
+	puts("Testing assign ... ");
+	lni::vector<int> v1_a;
+	v1_a.assign(v1.begin() + 1, v1.begin() + 3);
+	for (auto &n: v1_a)
+		printf(" %d", n);
+	puts("\n");
 
-	puts("Testing front and back");
+	puts("Testing front and back ... ");
 	printf(" %d %d", v1.front(), v1.back());
 	puts("\n");
 
-	puts("Testing pop_back");
+	puts("Testing pop_back ... ");
 	v1.pop_back();
 	for (auto &n: v1)
 		printf(" %d", n);
@@ -40,13 +47,13 @@ int main() {
 		printf(" %d", v1[i]);
 	puts("\n");
 
-	puts("Testing initializer list ...");
+	puts("Testing initializer list ... ");
 	lni::vector<int> v2 = {10, 11, 12, 13, 14};
 	for (auto &n: v2)
 		printf(" %d", n);
 	puts("\n");
 
-	puts("Testing swap ...");
+	puts("Testing swap ... ");
 	v1.swap(v2);
 	for (auto &n: v1)
 		printf(" %d", n);
@@ -55,7 +62,7 @@ int main() {
 		printf(" %d", n);
 	puts("\n");
 
-	puts("Testing clear ...");
+	puts("Testing clear ... ");
 	v1.clear();
 	for (auto &n: v1)
 		printf(" %d", n);
