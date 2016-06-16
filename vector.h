@@ -15,7 +15,7 @@ namespace lni {
 		public:
 			typedef T *iterator;
 			typedef const T *const_iterator;
-			typedef std::size_t size_type;
+			typedef unsigned int size_type;
 			typedef std::reverse_iterator<iterator> reverse_iterator;
 			typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
