@@ -10,7 +10,7 @@ It should be a drop-in replacement for `std:vector` in most cases,
 but note that `lni::vector` can generate redundancies up to 3x the data size (4x total).  
 (Consider using `shrink_to_fit()` to remove redundancies, but beware that a memory reallocation would take place.)
 
-## Usage
+## Sample Usage
 
 ```cpp
 #include "vector.h"
