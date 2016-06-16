@@ -6,7 +6,7 @@
 #ifndef LNI_VECTOR
 #define LNI_VECTOR
 
-#define LNI_VECTOR_MAX_SZ 500000000
+#define LNI_VECTOR_MAX_SZ 1000000000
 
 namespace lni {
 
