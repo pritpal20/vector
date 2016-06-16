@@ -7,26 +7,6 @@ namespace lni {
 	}
 
 	template <typename T>
-	vector<T>::vector(const lni::vector<T> &other) {
-		size_type i;
-		rsrv_sz = other.rsrv_sz;
-		arr = new T[rsrv_sz];
-		for (i = 0; i < other.vec_sz; ++i)
-			arr[i] = other.arr[i];
-		vec_sz = other.vec_sz;
-	}
-
-	template <typename T>
-	vector<T>::vector(lni::vector<T> &&other) {
-		size_type i;
-		rsrv_sz = other.rsrv_sz;
-		arr = new T[rsrv_sz];
-		for (i = 0; i < other.vec_sz; ++i)
-			arr[i] = std::move(other.arr[i]);
-		vec_sz = other.vec_sz;
-	}
-
-	template <typename T>
 	vector<T>::vector(typename vector<T>::size_type count) {
 		size_type i;
 		rsrv_sz = count << 2;
@@ -65,12 +45,32 @@ namespace lni {
 	}
 
 	template <typename T>
+	vector<T>::vector(const vector<typename vector<T>::value_type> &other) {
+		size_type i;
+		rsrv_sz = other.rsrv_sz;
+		arr = new T[rsrv_sz];
+		for (i = 0; i < other.vec_sz; ++i)
+			arr[i] = other.arr[i];
+		vec_sz = other.vec_sz;
+	}
+
+	template <typename T>
+	vector<T>::vector(vector<typename vector<T>::value_type> &&other) {
+		size_type i;
+		rsrv_sz = other.rsrv_sz;
+		arr = new T[rsrv_sz];
+		for (i = 0; i < other.vec_sz; ++i)
+			arr[i] = std::move(other.arr[i]);
+		vec_sz = other.vec_sz;
+	}
+
+	template <typename T>
 	vector<T>::~vector() {
 		delete [] arr;
 	}
 
 	template <typename T>
-	lni::vector<T> & vector<T>::operator = (const lni::vector<T> &other) {
+	vector<typename vector<T>::value_type> & vector<T>::operator = (const vector<typename vector<T>::value_type> &other) {
 		size_type i;
 		if (rsrv_sz < other.vec_sz) {
 			rsrv_sz = other.vec_sz << 2;
@@ -82,7 +82,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	lni::vector<T> & vector<T>::operator = (lni::vector<T> &&other) {
+	vector<typename vector<T>::value_type> & vector<T>::operator = (vector<typename vector<T>::value_type> &&other) {
 		size_type i;
 		if (rsrv_sz < other.vec_sz) {
 			rsrv_sz = other.vec_sz << 2;
@@ -94,7 +94,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	lni::vector<T> & vector<T>::operator = (std::initializer_list<T> lst) {
+	vector<typename vector<T>::value_type> & vector<T>::operator = (std::initializer_list<typename vector<T>::value_type> lst) {
 		if (rsrv_sz < lst.size()) {
 			rsrv_sz = lst.size() << 2;
 			reallocate();
@@ -106,7 +106,7 @@ namespace lni {
 
 	
 	template <typename T>
-	T & vector<T>::at(size_type pos) {
+	typename vector<T>::reference vector<T>::at(size_type pos) {
 		if (pos < vec_sz)
 			return arr[pos];
 		else
@@ -114,7 +114,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	const T & vector<T>::at(size_type pos) const {
+	typename vector<T>::const_reference vector<T>::at(size_type pos) const {
 		if (pos < vec_sz)
 			return arr[pos];
 		else
@@ -122,32 +122,42 @@ namespace lni {
 	}
 
 	template <typename T>
-	inline T & vector<T>::operator [](typename vector<T>::size_type idx) {
+	typename vector<T>::reference vector<T>::operator [](typename vector<T>::size_type idx) {
 		return arr[idx];
 	}
 
 	template <typename T>
-	inline const T & vector<T>::operator [](typename vector<T>::size_type idx) const {
+	typename vector<T>::const_reference vector<T>::operator [](typename vector<T>::size_type idx) const {
 		return arr[idx];
 	}
 
 	template <typename T>
-	T & vector<T>::front() {
+	typename vector<T>::reference vector<T>::front() {
 		return arr[0];
 	}
 
 	template <typename T>
-	T & vector<T>::back() {
+	typename vector<T>::const_reference vector<T>::front() const {
+		return arr[0];
+	}
+
+	template <typename T>
+	typename vector<T>::reference vector<T>::back() {
 		return arr[vec_sz - 1];
 	}
 
 	template <typename T>
-	T * vector<T>::data() {
+	typename vector<T>::const_reference vector<T>::back() const {
+		return arr[vec_sz - 1];
+	}
+
+	template <typename T>
+	typename vector<T>::value_type * vector<T>::data() {
 		return arr;
 	}
 
 	template <typename T>
-	const T * vector<T>::data() const {
+	const typename vector<T>::value_type * vector<T>::data() const {
 		return arr;
 	}
 
@@ -460,7 +470,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	bool vector<T>::operator == (const lni::vector<T> &rhs) const {
+	bool vector<T>::operator == (const vector<T> &rhs) const {
 		if (vec_sz != rhs.vec_sz) return false;
 		size_type i;
 		for (i = 0; i < vec_sz; ++i)
@@ -470,7 +480,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	bool vector<T>::operator != (const lni::vector<T> &rhs) const {
+	bool vector<T>::operator != (const vector<T> &rhs) const {
 		if (vec_sz != rhs.vec_sz) return true;
 		size_type i;
 		for (i = 0; i < vec_sz; ++i)
@@ -480,7 +490,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	bool vector<T>::operator < (const lni::vector<T> &rhs) const {
+	bool vector<T>::operator < (const vector<T> &rhs) const {
 		size_type i, j, ub = vec_sz < rhs.vec_sz ? vec_sz : rhs.vec_sz;
 		for (i = 0; i < ub; ++i)
 			if (arr[i] != rhs.arr[i])
@@ -489,7 +499,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	bool vector<T>::operator <= (const lni::vector<T> &rhs) const {
+	bool vector<T>::operator <= (const vector<T> &rhs) const {
 		size_type i, j, ub = vec_sz < rhs.vec_sz ? vec_sz : rhs.vec_sz;
 		for (i = 0; i < ub; ++i)
 			if (arr[i] != rhs.arr[i])
@@ -498,7 +508,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	bool vector<T>::operator > (const lni::vector<T> &rhs) const {
+	bool vector<T>::operator > (const vector<T> &rhs) const {
 		size_type i, j, ub = vec_sz < rhs.vec_sz ? vec_sz : rhs.vec_sz;
 		for (i = 0; i < ub; ++i)
 			if (arr[i] != rhs.arr[i])
@@ -507,7 +517,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	bool vector<T>::operator >= (const lni::vector<T> &rhs) const {
+	bool vector<T>::operator >= (const vector<T> &rhs) const {
 		size_type i, j, ub = vec_sz < rhs.vec_sz ? vec_sz : rhs.vec_sz;
 		for (i = 0; i < ub; ++i)
 			if (arr[i] != rhs.arr[i])

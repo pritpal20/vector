@@ -27,24 +27,26 @@ namespace lni {
 
 			vector();
 			vector(size_type count);
-			vector(size_type count, const T &val);
+			vector(size_type count, const_reference val);
 			template <class InputIt> vector(InputIt first, InputIt last);
-			vector(std::initializer_list<T>);
-			vector(const lni::vector<T> &);
-			vector(lni::vector<T> &&);
+			vector(std::initializer_list<value_type>);
+			vector(const vector<value_type> &);
+			vector(vector<value_type> &&);
 			~vector();
-			lni::vector<T> & operator = (const lni::vector<T> &);
-			lni::vector<T> & operator = (lni::vector<T> &&);
-			lni::vector<T> & operator = (std::initializer_list<T>);
+			vector<value_type> & operator = (const vector<value_type> &);
+			vector<value_type> & operator = (vector<value_type> &&);
+			vector<value_type> & operator = (std::initializer_list<value_type>);
 
-			T & at(size_type);
-			const T & at(size_type) const;
-			inline T & operator [](size_type);
-			inline const T & operator [](size_type) const;
-			T & front();
-			T & back();
-			T * data();
-			const T * data() const; 
+			reference at(size_type);
+			const_reference at(size_type) const;
+			reference operator [](size_type);
+			const_reference operator [](size_type) const;
+			reference front();
+			const_reference front() const;
+			reference back();
+			const_reference back() const;
+			value_type * data();
+			const value_type * data() const; 
 
 			iterator begin();
 			const_iterator cbegin() const;
@@ -54,7 +56,6 @@ namespace lni {
 			const_reverse_iterator crbegin() const;
 			reverse_iterator rend();
 			const_reverse_iterator crend() const;
-
 
 			size_type size() const;
 			bool empty() const;
@@ -83,12 +84,12 @@ namespace lni {
 			void clear();
 			void swap(lni::vector<T> &);
 
-			bool operator == (const lni::vector<T> &) const;
-			bool operator != (const lni::vector<T> &) const;
-			bool operator < (const lni::vector<T> &) const;
-			bool operator <= (const lni::vector<T> &) const;
-			bool operator > (const lni::vector<T> &) const;
-			bool operator >= (const lni::vector<T> &) const;
+			bool operator == (const vector<T> &) const;
+			bool operator != (const vector<T> &) const;
+			bool operator < (const vector<T> &) const;
+			bool operator <= (const vector<T> &) const;
+			bool operator > (const vector<T> &) const;
+			bool operator >= (const vector<T> &) const;
 		private:
 			size_type rsrv_sz = 4;
 			size_type vec_sz = 0;
