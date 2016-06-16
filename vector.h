@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <cstddef>
 #include <utility>
 #include <iterator>
 #include <stdexcept>
@@ -13,11 +13,17 @@ namespace lni {
 	template <typename T>
 	class vector {
 		public:
+			typedef T value_type;
+			typedef T &reference;
+			typedef const T &const_reference;
+			typedef T *pointer;
+			typedef const T *const_pointer;
 			typedef T *iterator;
 			typedef const T *const_iterator;
-			typedef unsigned int size_type;
 			typedef std::reverse_iterator<iterator> reverse_iterator;
 			typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+			typedef ptrdiff_t difference_type;
+			typedef unsigned int size_type;
 
 			vector();
 			vector(size_type count);
