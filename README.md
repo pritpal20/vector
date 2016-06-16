@@ -65,6 +65,16 @@ std::vector 0.239s
 
 ➔ **2.320x** faster
 
+---
+
+> Visual Studio 2015, Windows 10 Enterprise, Desktop (16GB RAM, i7-3770)
+
+```
+lni::vector 0.028s
+std::vector 0.088s
+```
+➔ **3.143x** faster
+
 
 ## License
 

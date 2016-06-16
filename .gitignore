@@ -3,3 +3,12 @@ tester
 dbg
 *.swp
 *.stackdump
+
+# Visual Studio
+.vs/
+Debug/
+Release/
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.VC.db
