@@ -17,7 +17,7 @@ int main() {
 	
 	puts("\n=== Debugging Messages ===\n");
 
-	printf("max_size() = %llu", v1.max_size());
+	printf("max_size() = %u", v1.max_size());
 	puts("\n");
 
 	puts("Testing resize ... ");
@@ -95,7 +95,9 @@ int main() {
 
 	puts("Testing insert ... ");
 	auto it = v6.insert(v6.begin() + 1, 2.5);
+	printf(" Just inserted: %.3f\n", *it);
 	it = v6.insert(v6.begin(), 4.0);
+	printf(" Just inserted: %.3f\n", *it);
 	for (auto &f: v6)
 		printf(" %.3f", f);
 	puts("\n");
@@ -128,9 +130,9 @@ int main() {
 	puts("\n");
 
 	puts("Testing shrink_to_fit ... ");
-	printf("Before: %llu, %llu\n", v7.size(), v7.capacity());
+	printf("Before: %u, %u\n", v7.size(), v7.capacity());
 	v7.shrink_to_fit();
-	printf("After: %llu, %llu\n", v7.size(), v7.capacity());
+	printf("After: %u, %u\n", v7.size(), v7.capacity());
 	puts("");
 
 	puts("Testing operators ... ");
