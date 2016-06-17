@@ -33,10 +33,11 @@ int main() {
 	printf("max_size() = %u", v1.max_size());
 	puts("\n");
 	
-	puts("Testing emplace_back ... ");
+	puts("Testing emplace and emplace_back ... ");
 	lni::vector<test> vt;
 	vt.push_back( test(1, 2, 3) );
-	vt.emplace_back( 2, 4, 6 );
+	vt.emplace_back(2, 4, 6);
+	vt.emplace(vt.begin() + 1, 1, 3, 5);
 	for (auto &vti: vt)
 		vti.print();
 	puts("\n");

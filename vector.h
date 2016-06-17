@@ -71,6 +71,7 @@ namespace lni {
 			template <class InputIt> void assign(InputIt, InputIt);
 			void assign(std::initializer_list<T>);
 
+			template <class ... Args> iterator emplace(const_iterator, Args && ...); 
 			iterator insert(const_iterator, const T &);
 			iterator insert(const_iterator, T &&);
 			iterator insert(const_iterator, size_type, const T&);
