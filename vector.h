@@ -25,44 +25,47 @@ namespace lni {
 			typedef ptrdiff_t                             difference_type;
 			typedef unsigned int                          size_type;
 
-			vector();
-			vector(size_type count);
-			vector(size_type count, const_reference val);
+			vector() noexcept;
+			explicit vector(size_type n);
+			vector(size_type n, const T &val);
 			template <class InputIt> vector(InputIt first, InputIt last);
-			vector(std::initializer_list<value_type>);
-			vector(const vector<value_type> &);
-			vector(vector<value_type> &&);
+			vector(std::initializer_list<T>);
+			vector(const vector<T> &);
+			vector(vector<T> &&) noexcept;
 			~vector();
-			vector<value_type> & operator = (const vector<value_type> &);
-			vector<value_type> & operator = (vector<value_type> &&);
-			vector<value_type> & operator = (std::initializer_list<value_type>);
+			vector<T> & operator = (const vector<T> &);
+			vector<T> & operator = (vector<T> &&);
+			vector<T> & operator = (std::initializer_list<T>);
 
-			reference at(size_type);
-			const_reference at(size_type) const;
+			iterator begin() noexcept;
+			const_iterator cbegin() const noexcept;
+			iterator end() noexcept;
+			const_iterator cend() const noexcept;
+			reverse_iterator rbegin() noexcept;
+			const_reverse_iterator crbegin() const noexcept;
+			reverse_iterator rend() noexcept;
+			const_reverse_iterator crend() const noexcept;
+
+			size_type size() const noexcept;
+			bool empty() const noexcept;
+			size_type max_size() const noexcept;
+			size_type capacity() const noexcept;
+			void resize(size_type);
+			void resize(size_type, const T &);
+			void reserve(size_type);
+			void shrink_to_fit();
+
 			reference operator [](size_type);
 			const_reference operator [](size_type) const;
+			reference at(size_type);
+			const_reference at(size_type) const;
 			reference front();
 			const_reference front() const;
 			reference back();
 			const_reference back() const;
-			value_type * data();
-			const value_type * data() const; 
 
-			iterator begin();
-			const_iterator cbegin() const;
-			iterator end();
-			const_iterator cend() const;
-			reverse_iterator rbegin();
-			const_reverse_iterator crbegin() const;
-			reverse_iterator rend();
-			const_reverse_iterator crend() const;
-
-			size_type size() const;
-			bool empty() const;
-			size_type max_size() const;
-			void reserve(size_type);
-			size_type capacity() const;
-			void shrink_to_fit();
+			T * data() noexcept;
+			const T * data() const noexcept; 
 
 			void assign(size_type, const T &value);
 			template <class InputIt> void assign(InputIt, InputIt);
@@ -80,7 +83,6 @@ namespace lni {
 			void push_back(T &&);
 			void pop_back();
 			void emplace_back(T &&);
-			void resize(size_type);
 			void clear();
 			void swap(lni::vector<T> &);
 

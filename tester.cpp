@@ -24,6 +24,10 @@ int main() {
 	v1.resize(5);
 	for (auto &n: v1)
 	 	printf(" %d", n);
+	puts("");
+	v1.resize(10, 10);
+	for (auto &n: v1)
+		printf(" %d", n);
 	puts("\n");
 	
 	puts("Testing assign ... ");
