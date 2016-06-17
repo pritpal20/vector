@@ -1,6 +1,6 @@
 # vector
 
-:purple_heart: A 2.3x faster `std::vector` implementation (minus Allocator).
+:purple_heart: A 2 - 3x faster `std::vector` implementation (minus Allocator).
 
 [![Build Status](https://travis-ci.org/lnishan/vector.svg?branch=master)](https://travis-ci.org/lnishan/vector)
 
@@ -10,7 +10,12 @@ It should be a drop-in replacement for `std:vector` in most cases,
 but note that `lni::vector` can generate redundancies up to 3x the data size (4x total).  
 (Consider using `shrink_to_fit()` to remove redundancies, but beware that a memory reallocation would take place.)
 
-## Sample Usage
+## Usage
+
+A very simple sample is provided below.  
+Please do not compile `vector.cpp` (or include it in your project), just put it in the same directory as `vector.h`.
+
+For details, see [tester.cpp](tester.cpp) or an [online reference](http://en.cppreference.com/w/cpp/container/vector). 
 
 ```cpp
 #include "vector.h"
