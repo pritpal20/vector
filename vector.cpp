@@ -455,12 +455,13 @@ namespace lni {
 	}
 
 	template <typename T>
-	void vector<T>::emplace_back(T &&val) {
+	template <class ... Args>
+	void vector<T>::emplace_back(Args && ... args) {
 		if (vec_sz == rsrv_sz) {
 			rsrv_sz <<= 2;
 			reallocate();
 		}
-		arr[vec_sz] = std::move(val);
+		arr[vec_sz] = std::move( T( std::forward<Args>(args) ... ) );
 		++vec_sz;
 	}
 

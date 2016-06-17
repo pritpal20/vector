@@ -82,7 +82,7 @@ namespace lni {
 			void push_back(const T &);
 			void push_back(T &&);
 			void pop_back();
-			void emplace_back(T &&);
+			template <class ... Args> void emplace_back(Args && ... args);
 			void clear();
 			void swap(lni::vector<T> &);
 

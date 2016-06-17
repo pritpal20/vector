@@ -1,7 +1,20 @@
 #include "vector.h"
 #include <cstdio>
 #include <vector>
+#include <utility>
 #include <ctime>
+
+class test {
+	public:
+		int a, b, c;
+		test() {}
+		test(int & _a, int & _b, int & _c): a(_a), b(_b), c(_c) {}
+		test(int && _a, int && _b, int && _c): a(std::move(_a)), b(std::move(_b)), c(std::move(_c)) {}
+
+		void print() {
+			printf(" %d %d %d\n", a, b, c);
+		}
+};
 
 int main() {
 	int i;
@@ -18,6 +31,14 @@ int main() {
 	puts("\n=== Debugging Messages ===\n");
 
 	printf("max_size() = %u", v1.max_size());
+	puts("\n");
+	
+	puts("Testing emplace_back ... ");
+	lni::vector<test> vt;
+	vt.push_back( test(1, 2, 3) );
+	vt.emplace_back( 2, 4, 6 );
+	for (auto &vti: vt)
+		vti.print();
 	puts("\n");
 
 	puts("Testing resize ... ");
