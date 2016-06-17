@@ -104,6 +104,43 @@ namespace lni {
 			arr[vec_sz++] = item;
 	}
 
+	template <typename T>
+	void vector<T>::assign(typename vector<T>::size_type count, const T &value) {
+		size_type i;
+		if (count > rsrv_sz) {
+			rsrv_sz = count << 2;
+			reallocate();
+		}
+		for (i = 0; i < count; ++i)
+			arr[i] = value;
+		vec_sz = count;
+	}
+
+	template <typename T>
+	template <class InputIt>
+	void vector<T>::assign(InputIt first, InputIt last) {
+		size_type i, count = last - first;
+		if (count > rsrv_sz) {
+			rsrv_sz = count << 2;
+			reallocate();
+		}
+		for (i = 0; i < count; ++i, ++first)
+			arr[i] = *first;
+		vec_sz = count;
+	}
+
+	template <typename T>
+	void vector<T>::assign(std::initializer_list<T> lst) {
+		size_type i, count = lst.size();
+		if (count > rsrv_sz) {
+			rsrv_sz = count << 2;
+			reallocate();
+		}
+		i = 0;
+		for (auto &item: lst)
+			arr[i++] = item;
+	}
+
 
 	template <typename T>
 	typename vector<T>::iterator vector<T>::begin() noexcept {
@@ -158,13 +195,13 @@ namespace lni {
 
 
 	template <typename T>
-	typename vector<T>::size_type vector<T>::size() const noexcept{
-		return vec_sz;
-	}
-
-	template <typename T>
 	bool vector<T>::empty() const noexcept {
 		return vec_sz == 0;
+	}
+	
+	template <typename T>
+	typename vector<T>::size_type vector<T>::size() const noexcept{
+		return vec_sz;
 	}
 
 	template <typename T>
@@ -286,40 +323,40 @@ namespace lni {
 
 
 	template <typename T>
-	void vector<T>::assign(typename vector<T>::size_type count, const T &value) {
-		size_type i;
-		if (count > rsrv_sz) {
-			rsrv_sz = count << 2;
+	template <class ... Args>
+	void vector<T>::emplace_back(Args && ... args) {
+		if (vec_sz == rsrv_sz) {
+			rsrv_sz <<= 2;
 			reallocate();
 		}
-		for (i = 0; i < count; ++i)
-			arr[i] = value;
-		vec_sz = count;
+		arr[vec_sz] = std::move( T( std::forward<Args>(args) ... ) );
+		++vec_sz;
 	}
 
 	template <typename T>
-	template <class InputIt>
-	void vector<T>::assign(InputIt first, InputIt last) {
-		size_type i, count = last - first;
-		if (count > rsrv_sz) {
-			rsrv_sz = count << 2;
+	void vector<T>::push_back(const T &val) {
+		if (vec_sz == rsrv_sz) {
+			rsrv_sz <<= 2;
 			reallocate();
 		}
-		for (i = 0; i < count; ++i, ++first)
-			arr[i] = *first;
-		vec_sz = count;
+		arr[vec_sz] = val;
+		++vec_sz;
 	}
 
 	template <typename T>
-	void vector<T>::assign(std::initializer_list<T> lst) {
-		size_type i, count = lst.size();
-		if (count > rsrv_sz) {
-			rsrv_sz = count << 2;
+	void vector<T>::push_back(T &&val) {
+		if (vec_sz == rsrv_sz) {
+			rsrv_sz <<= 2;
 			reallocate();
 		}
-		i = 0;
-		for (auto &item: lst)
-			arr[i++] = item;
+		arr[vec_sz] = std::move(val);
+		++vec_sz;
+	}
+
+	template <typename T>
+	void vector<T>::pop_back() {
+		--vec_sz;
+		arr[vec_sz].~T();
 	}
 
 
@@ -446,51 +483,6 @@ namespace lni {
 	}
 
 	template <typename T>
-	void vector<T>::push_back(const T &val) {
-		if (vec_sz == rsrv_sz) {
-			rsrv_sz <<= 2;
-			reallocate();
-		}
-		arr[vec_sz] = val;
-		++vec_sz;
-	}
-
-	template <typename T>
-	void vector<T>::push_back(T &&val) {
-		if (vec_sz == rsrv_sz) {
-			rsrv_sz <<= 2;
-			reallocate();
-		}
-		arr[vec_sz] = std::move(val);
-		++vec_sz;
-	}
-
-	template <typename T>
-	void vector<T>::pop_back() {
-		--vec_sz;
-		arr[vec_sz].~T();
-	}
-
-	template <typename T>
-	template <class ... Args>
-	void vector<T>::emplace_back(Args && ... args) {
-		if (vec_sz == rsrv_sz) {
-			rsrv_sz <<= 2;
-			reallocate();
-		}
-		arr[vec_sz] = std::move( T( std::forward<Args>(args) ... ) );
-		++vec_sz;
-	}
-
-	template <typename T>
-	void vector<T>::clear() {
-		size_type i;
-		for (i = 0; i < vec_sz; ++i)
-			arr[i].~T();
-		vec_sz = 0;
-	}
-
-	template <typename T>
 	void vector<T>::swap(lni::vector<T> &rhs) {
 		size_type i, sz = rhs.size();
 		T *tmp = new T[sz];
@@ -507,6 +499,15 @@ namespace lni {
 		delete [] tmp;
 	}
 
+	template <typename T>
+	void vector<T>::clear() {
+		size_type i;
+		for (i = 0; i < vec_sz; ++i)
+			arr[i].~T();
+		vec_sz = 0;
+	}
+
+	
 	template <typename T>
 	bool vector<T>::operator == (const vector<T> &rhs) const {
 		if (vec_sz != rhs.vec_sz) return false;
