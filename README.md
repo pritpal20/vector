@@ -13,12 +13,11 @@ but note that `lni::vector` can generate redundancies up to 3x the data size (4x
 ## Usage
 
 A very simple sample is provided below.  
-Please do not compile `vector.cpp` (or include it in your project), just put it in the same directory as `vector.h`.
 
-For details, see [tester.cpp](tester.cpp) or an [online reference](http://en.cppreference.com/w/cpp/container/vector). 
+For details, refer to [tester.cpp](tester.cpp) or an [online reference](http://en.cppreference.com/w/cpp/container/vector). 
 
 ```cpp
-#include "vector.h"
+#include "vector.hpp"
 
 int main() {
 	int i;
