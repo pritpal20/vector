@@ -105,9 +105,10 @@ namespace lni {
 			T *arr;
 
 			inline void reallocate();
+
 	};
 
-	
+
 	
 	template <typename T>
 	vector<T>::vector() noexcept {
@@ -671,6 +672,85 @@ namespace lni {
 				return arr[i] > rhs.arr[i];
 		return vec_sz >= rhs.vec_sz;
 	}
+
+
+
+	template <>
+	void vector<bool>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<signed char>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<unsigned char>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<char>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<short int>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<unsigned short int>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<int>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<unsigned int>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<long int>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<unsigned long int>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<long long int>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<unsigned long long int>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<float>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<double>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+	template <>
+	void vector<long double>::clear() noexcept {
+		vec_sz = 0;
+	}
+
+
 }
 
 
