@@ -91,7 +91,7 @@ namespace lni {
 			iterator erase(const_iterator);
 			iterator erase(const_iterator, const_iterator);
 			void swap(vector<T> &);
-			void clear();
+			void clear() noexcept;
 
 			bool operator == (const vector<T> &) const;
 			bool operator != (const vector<T> &) const;
@@ -608,7 +608,7 @@ namespace lni {
 	}
 
 	template <typename T>
-	void vector<T>::clear() {
+	void vector<T>::clear() noexcept {
 		size_type i;
 		for (i = 0; i < vec_sz; ++i)
 			arr[i].~T();
