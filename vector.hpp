@@ -330,13 +330,12 @@ namespace lni {
 				rsrv_sz = sz;
 				reallocate();
 			}
-			vec_sz = sz;
 		} else {
 			size_type i;
 			for (i = vec_sz; i < sz; ++i)
 				arr[i].~T();
-			vec_sz = sz;
 		}
+		vec_sz = sz;
 	}
 
 	template <typename T>
@@ -349,13 +348,12 @@ namespace lni {
 			size_type i;
 			for (i = vec_sz; i < sz; ++i)
 				arr[i] = c;
-			vec_sz = sz;
 		} else {
 			size_type i;
 			for (i = vec_sz; i < sz; ++i)
 				arr[i].~T();
-			vec_sz = sz;
 		}
+		vec_sz = sz;
 	}
 
 	template <typename T>
@@ -673,6 +671,353 @@ namespace lni {
 		return vec_sz >= rhs.vec_sz;
 	}
 
+
+
+	template <>
+	void vector<bool>::resize(typename vector<bool>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<signed char>::resize(typename vector<signed char>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned char>::resize(typename vector<unsigned char>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<char>::resize(typename vector<char>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<short int>::resize(typename vector<short int>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned short int>::resize(typename vector<unsigned short int>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<int>::resize(typename vector<int>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned int>::resize(typename vector<unsigned int>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<long int>::resize(typename vector<long int>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned long int>::resize(typename vector<unsigned long int>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<long long int>::resize(typename vector<long long int>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned long long int>::resize(typename vector<unsigned long long int>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<float>::resize(typename vector<float>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<double>::resize(typename vector<double>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<long double>::resize(typename vector<long double>::size_type sz) {
+		if (sz > rsrv_sz) {
+			rsrv_sz = sz;
+			reallocate();
+		}
+		vec_sz = sz;
+	}
+
+
+	template <>
+	void vector<bool>::resize(typename vector<bool>::size_type sz, const bool &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<signed char>::resize(typename vector<signed char>::size_type sz, const signed char &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned char>::resize(typename vector<unsigned char>::size_type sz, const unsigned char &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<char>::resize(typename vector<char>::size_type sz, const char &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<short int>::resize(typename vector<short int>::size_type sz, const short int &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned short int>::resize(typename vector<unsigned short int>::size_type sz, const unsigned short int &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<int>::resize(typename vector<int>::size_type sz, const int &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned int>::resize(typename vector<unsigned int>::size_type sz, const unsigned int &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<long int>::resize(typename vector<long int>::size_type sz, const long int &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned long int>::resize(typename vector<unsigned long int>::size_type sz, const unsigned long int &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<long long int>::resize(typename vector<long long int>::size_type sz, const long long int &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<unsigned long long int>::resize(typename vector<unsigned long long int>::size_type sz, const unsigned long long int &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<float>::resize(typename vector<float>::size_type sz, const float &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<double>::resize(typename vector<double>::size_type sz, const double &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
+
+	template <>
+	void vector<long double>::resize(typename vector<long double>::size_type sz, const long double &c) {
+		if (sz > vec_sz) {
+			if (sz > rsrv_sz) {
+				rsrv_sz = sz;
+				reallocate();
+			}
+			size_type i;
+			for (i = vec_sz; i < sz; ++i)
+				arr[i] = c;
+		}
+		vec_sz = sz;
+	}
 
 
 	template <>
