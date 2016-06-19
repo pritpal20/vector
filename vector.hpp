@@ -676,6 +676,82 @@ namespace lni {
 
 
 	template <>
+	void vector<bool>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<signed char>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<unsigned char>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<char>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<short int>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<unsigned short int>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<int>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<unsigned int>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<long int>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<unsigned long int>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<long long int>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<unsigned long long int>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<float>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<double>::pop_back() {
+		--vec_sz;
+	}
+
+	template <>
+	void vector<long double>::pop_back() {
+		--vec_sz;
+	}
+
+
+	template <>
 	void vector<bool>::clear() noexcept {
 		vec_sz = 0;
 	}
