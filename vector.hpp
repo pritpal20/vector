@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <cstring>
 #include <utility>
 #include <iterator>
 #include <stdexcept>
@@ -296,8 +297,7 @@ namespace lni {
 	inline void vector<T>::reallocate() {
 		size_type i;
 		T *tarr = new T[rsrv_sz];
-		for (i = 0; i < vec_sz; ++i)
-			tarr[i] = arr[i];
+		memcpy(tarr, arr, vec_sz * sizeof(T));
 		delete [] arr;
 		arr = tarr;
 	}
