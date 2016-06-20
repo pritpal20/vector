@@ -568,25 +568,22 @@ namespace lni {
 
 	template <typename T>
 	typename vector<T>::iterator vector<T>::erase(typename vector<T>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
+		iterator iit = &arr[it - arr];
 		(*iit).~T();
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(T));
 		--vec_sz;
 		return iit;
 	}
 
 	template <typename T>
 	typename vector<T>::iterator vector<T>::erase(typename vector<T>::const_iterator first, typename vector<T>::const_iterator last) {
-		size_type i, idx_f = first - arr, idx_l = last - arr, cnt = last - first;
-		if (!cnt) return arr + idx_f;
-		for (i = idx_f; i != idx_l; ++i)
-			arr[i].~T();
-		for (i = idx_l; i < vec_sz; ++i)
-			arr[i - cnt] = arr[i];
-		vec_sz -= cnt;
-		return arr + idx_f;
+		iterator f = &arr[first - arr];
+		if (first == last) return f;
+		for ( ; first != last; ++first)
+			(*first).~T();
+		memcpy(f, last, (vec_sz - (last - arr)) * sizeof(T));
+		vec_sz -= last - first;
+		return f;
 	}
 
 	template <typename T>
@@ -1096,150 +1093,120 @@ namespace lni {
 
 	template <>
 	typename vector<bool>::iterator vector<bool>::erase(typename vector<bool>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(bool));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<signed char>::iterator vector<signed char>::erase(typename vector<signed char>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(signed char));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<unsigned char>::iterator vector<unsigned char>::erase(typename vector<unsigned char>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(unsigned char));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<char>::iterator vector<char>::erase(typename vector<char>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(char));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<short int>::iterator vector<short int>::erase(typename vector<short int>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(short int));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<unsigned short int>::iterator vector<unsigned short int>::erase(typename vector<unsigned short int>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(unsigned short int));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<int>::iterator vector<int>::erase(typename vector<int>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(int));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<unsigned int>::iterator vector<unsigned int>::erase(typename vector<unsigned int>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(unsigned int));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<long int>::iterator vector<long int>::erase(typename vector<long int>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(long int));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<unsigned long int>::iterator vector<unsigned long int>::erase(typename vector<unsigned long int>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(unsigned long int));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<long long int>::iterator vector<long long int>::erase(typename vector<long long int>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(long long int));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<unsigned long long int>::iterator vector<unsigned long long int>::erase(typename vector<unsigned long long int>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(unsigned long long int));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<float>::iterator vector<float>::erase(typename vector<float>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(float));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<double>::iterator vector<double>::erase(typename vector<double>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(double));
 		--vec_sz;
 		return iit;
 	}
 
 	template <>
 	typename vector<long double>::iterator vector<long double>::erase(typename vector<long double>::const_iterator it) {
-		size_type i, idx = it - arr;
-		iterator iit = arr + idx;
-		for (i = idx + 1; i < vec_sz; ++i)
-			arr[i - 1] = arr[i];
+		iterator iit = &arr[it - arr];
+		memcpy(iit, iit + 1, (vec_sz - (it - arr) - 1) * sizeof(long double));
 		--vec_sz;
 		return iit;
 	}
@@ -1307,12 +1274,11 @@ namespace lni {
 
 	template <>
 	typename vector<int>::iterator vector<int>::erase(typename vector<int>::const_iterator first, typename vector<int>::const_iterator last) {
-		size_type i, idx_f = first - arr, idx_l = last - arr, cnt = last - first;
-		if (!cnt) return arr + idx_f;
-		for (i = idx_l; i < vec_sz; ++i)
-			arr[i - cnt] = arr[i];
-		vec_sz -= cnt;
-		return arr + idx_f;
+		iterator f = &arr[first - arr];
+		if (first == last) return f;
+		memcpy(f, last, (vec_sz - (last - arr)) * sizeof(int));
+		vec_sz -= last - first;
+		return f;
 	}
 
 	template <>
