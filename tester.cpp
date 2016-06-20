@@ -124,16 +124,21 @@ int main() {
 	printf(" Just inserted: %.3f\n", *it);
 	it = v6.insert(v6.begin(), 4.0);
 	printf(" Just inserted: %.3f\n", *it);
+	lni::vector<double> vins{-2.0, -3.0};
+	it = v6.insert(v6.begin() + 1, vins.begin(), vins.end());
+	printf(" Just inserted: %.3f %.3f\n", *it, *(it + 1));
 	for (auto &f: v6)
 		printf(" %.3f", f);
 	puts("\n");
 
 	it = v6.insert(v6.end(), 2, 0.0);
 	it = v6.insert(v6.end() - 2, 3, 0.5);
+	it = v6.insert(v6.begin(), {1.0, 2.0, 3.0, 4.0, 5.0});
 	printf(" v6:");
 	for (auto &f: v6)
 		printf(" %.3f", f);
 	puts("");
+
 
 	lni::vector<double> v7(2, 5.0);
 	v7.insert(v7.end(), v6.begin(), v6.end());

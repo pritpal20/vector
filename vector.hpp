@@ -485,85 +485,79 @@ namespace lni {
 
 	template <typename T>
 	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, const T &val) {
-		size_type i, idx = it - arr;
+		iterator iit = &arr[it - arr];
 		if (vec_sz == rsrv_sz) {
 			rsrv_sz <<= 2;
 			reallocate();
 		}
-		for (i = vec_sz - 1; i > idx; --i) // idx can be 0
-			arr[i + 1] = arr[i];
-		arr[idx + 1] = arr[idx];
-		arr[idx] = val;
+		memmove(iit + 1, iit, (vec_sz - (it - arr)) * sizeof(T));
+		(*iit) = val;
 		++vec_sz;
-		return arr + idx;
+		return iit;
 	}
 
 	template <typename T>
 	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, T &&val) {
-		size_type i, idx = it - arr;
+		iterator iit = &arr[it - arr];
 		if (vec_sz == rsrv_sz) {
 			rsrv_sz <<= 2;
 			reallocate();
 		}
-		for (i = vec_sz - 1; i > idx; --i) // idx can be 0
-			arr[i + 1] = arr[i];
-		arr[idx + 1] = arr[idx];
-		arr[idx] = std::move(val);
+		memmove(iit + 1, iit, (vec_sz - (it - arr)) * sizeof(T));
+		(*iit) = std::move(val);
 		++vec_sz;
-		return arr + idx;
+		return iit;
 	}
 
 	template <typename T>
 	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, typename vector<T>::size_type cnt, const T &val) {
-		size_type i, idx = it - arr;
-		if (!cnt) return arr + idx;
+		iterator f = &arr[it - arr];
+		if (!cnt) return f;
 		if (vec_sz + cnt > rsrv_sz) {
 			rsrv_sz = (vec_sz + cnt) << 2;
 			reallocate();
 		}
-		for (i = vec_sz - 1; i > idx; --i) // idx can be 0
-			arr[i + cnt] = arr[i];
-		arr[idx + cnt] = arr[idx];
-		for (i = idx; i < idx + cnt; ++i)
-			arr[i] = val;
+		memmove(f + cnt, f, (vec_sz - (it - arr)) * sizeof(T));
 		vec_sz += cnt;
-		return arr + idx;
+		for (iterator it = f; cnt--; ++it)
+			(*it) = val;
+		return f;
 	}
 
 	template <typename T>
 	template <class InputIt>
 	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, InputIt first, InputIt last) {
-		size_type i, idx = it - arr, cnt = last - first;
-		if (!cnt) return arr + idx;
+		iterator f = &arr[it - arr];
+		size_type cnt = last - first;
+		if (!cnt) return f;
 		if (vec_sz + cnt > rsrv_sz) {
 			rsrv_sz = (vec_sz + cnt) << 2;
 			reallocate();
 		}
-		for (i = vec_sz - 1; i > idx; --i)
-			arr[i + cnt] = arr[i];
-		arr[idx + cnt] = arr[idx];
-		for (i = idx; first != last; ++i, ++first)
-			arr[i] = *first;
+		memmove(f + cnt, f, (vec_sz - (it - arr)) * sizeof(T));
+		for (iterator it = f; first != last; ++it, ++first)
+			(*it) = *first;
 		vec_sz += cnt;
-		return arr + idx;
+		return f;
 	}
 
 	template <typename T>
 	typename vector<T>::iterator vector<T>::insert(typename vector<T>::const_iterator it, std::initializer_list<T> lst) {
-		size_type i, idx = it - arr, cnt = lst.size();
-		if (!cnt) return arr + idx;
+		size_type cnt = lst.size();
+		iterator f = &arr[it - arr];
+		if (!cnt) return f;
 		if (vec_sz + cnt > rsrv_sz) {
 			rsrv_sz = (vec_sz + cnt) << 2;
 			reallocate();
 		}
-		for (i = vec_sz - 1; i > idx; --i)
-			arr[i + cnt] = arr[i];
-		arr[idx + cnt] = arr[idx];
-		i = idx;
-		for (auto &item: lst)
-			arr[i++] = item;
+		memmove(f + cnt, f, (vec_sz - (it - arr)) * sizeof(T));
+		iterator iit = f;
+		for (auto &item: lst) {
+			(*iit) = item;
+			++iit;
+		}
 		vec_sz += cnt;
-		return arr + idx;
+		return f;
 	}
 
 	template <typename T>
