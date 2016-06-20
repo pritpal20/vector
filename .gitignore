@@ -1,6 +1,8 @@
 *.exe
 tester
 dbg
+std
+lni
 *.swp
 *.stackdump
 
