@@ -1,8 +1,8 @@
 *.exe
 tester
 dbg
-std
-lni
+std_*
+lni_*
 *.swp
 *.stackdump
 
