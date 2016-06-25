@@ -10,8 +10,9 @@ using std::vector;
 #endif
 
 int main() {
-	time_t st;
+	freopen("input.txt", "r", stdin);
 	int i, n, q;
+	time_t st;
 	int cmd, s, e;
 	int add, ai;
 	st = clock();
