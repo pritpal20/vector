@@ -13,6 +13,7 @@ int main() {
 	time_t st = clock();
 	int i, n, q;
 	int cmd, s, e;
+	int add, ai;
 	vector<int> v;
 	scanf("%d", &n);
 	v.resize(n);
@@ -20,13 +21,17 @@ int main() {
 		scanf("%d", &v[i]);
 	scanf("%d", &q);
 	while (q--) {
-		scanf("%d%d%d", &cmd, &s, &e);
+		scanf("%d", &cmd);
 		if (cmd == 0) {
-			v.push_back(s);
-			v.push_back(e);
+			scanf("%d", &add);
+			for (i = 0; i < add; ++i) {
+				scanf("%d", &ai);
+				v.push_back(ai);
+			}
 		} else if (cmd == 1) {
 			v.pop_back();
 		} else if (cmd == 2) {
+			scanf("%d%d", &s, &e);
 			v.erase(v.begin() + s, v.begin() + e);
 		}
 	}

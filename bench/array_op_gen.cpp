@@ -26,13 +26,17 @@ int main() {
 	printf("%d\n", q);
 	while (q--) {
 		int sel = rand() % 10;
-		if (sel < 5) {
-			printf("0 %d %d\n", rand() % M, rand() % M);
-			sz += 2;
-		} else if (sel < 8) {
-			printf("1 2 3\n");
+		if (sel < 5) { // add
+			int add = rand() % 10;
+			printf("0 %d", add);
+			for (i = 0; i < add; i++)
+				printf(" %d", rand() % M);
+			puts("");
+			sz += add;
+		} else if (sel < 8) { // pop_back
+			puts("1");
 			--sz;
-		} else {
+		} else { // erase
 			int st = rand() % (sz - 10);
 			int ed = st + 1 + rand() % 10;
 			printf("2 %d %d\n", st, ed);

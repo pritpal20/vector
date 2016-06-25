@@ -1,4 +1,5 @@
 *.exe
+*.txt
 tester
 dbg
 std_*
