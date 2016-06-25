@@ -10,7 +10,7 @@ using lni::vector;
 using std::vector;
 #endif
 
-const int N = 1e7;
+const int N = 1e5;
 
 int main() {
 	int i;
@@ -22,7 +22,7 @@ int main() {
 	for (i = 0; i < N; ++i)
 		v.push_back(i);
 	for (i = 0; i < N; ++i)
-		v.insert(v.begin() + rand() % v.size(), i);
+		v.insert(v.begin() + (i >> 1), i);
 
 	printf("%.3fs\n", (double)(clock() - st) / CLOCKS_PER_SEC);
 	
