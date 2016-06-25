@@ -10,10 +10,11 @@ using std::vector;
 #endif
 
 int main() {
-	time_t st = clock();
+	time_t st;
 	int i, n, q;
 	int cmd, s, e;
 	int add, ai;
+	st = clock();
 	vector<int> v;
 	scanf("%d", &n);
 	v.resize(n);
