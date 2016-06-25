@@ -470,17 +470,15 @@ namespace lni {
 	template <typename T>
 	template <class ... Args>
 	typename vector<T>::iterator vector<T>::emplace(typename vector<T>::const_iterator it, Args && ... args) {
-		size_type i, idx = it - arr;
+		iterator iit = &arr[it - arr];
 		if (vec_sz == rsrv_sz) {
 			rsrv_sz <<= 2;
 			reallocate();
 		}
-		for (i = vec_sz - 1; i > idx; --i)
-			arr[i + 1] = arr[i];
-		arr[idx + 1] = arr[idx];
-		arr[idx] = std::move( T( std::forward<Args>(args) ... ) );
+		memmove(iit + 1, iit, (vec_sz - (it - arr)) * sizeof(T));
+		(*iit) = std::move( T( std::forward<Args>(args) ... ) );
 		++vec_sz;
-		return arr + idx;
+		return iit;
 	}
 
 	template <typename T>
