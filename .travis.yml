@@ -22,3 +22,4 @@ install:
   # - clang -v
 script:
   - make 
+  - cd bench && make
