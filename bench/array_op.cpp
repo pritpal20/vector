@@ -9,32 +9,30 @@ using lni::vector;
 using std::vector;
 #endif
 
+const int N = 1e6;
+const int Q = 1e5;
+
 int main() {
-	freopen("input.txt", "r", stdin);
-	int i, n, q;
+	int i, k;
 	time_t st;
 	int cmd, s, e;
 	int add, ai;
 	st = clock();
 	vector<int> v;
-	scanf("%d", &n);
-	v.resize(n);
-	for (i = 0; i < n; i++)
-		scanf("%d", &v[i]);
-	scanf("%d", &q);
-	while (q--) {
-		scanf("%d", &cmd);
-		if (cmd == 0) {
-			scanf("%d", &add);
+	v.resize(N);
+	for (i = 0; i < N; i++)
+		v[i] = i;
+	for (k = 0; k < Q; k++) {
+		cmd = k % 10;
+		if (cmd < 5) {
+			add = 7;
 			for (i = 0; i < add; ++i) {
-				scanf("%d", &ai);
-				v.push_back(ai);
+				v.push_back(k);
 			}
-		} else if (cmd == 1) {
+		} else if (cmd < 8) {
 			v.pop_back();
-		} else if (cmd == 2) {
-			scanf("%d%d", &s, &e);
-			v.erase(v.begin() + s, v.begin() + e);
+		} else {
+			v.erase(v.begin() + v.size() / 2, v.begin() + v.size() / 2 + 7);
 		}
 	}
 	long long int sum = 0;
