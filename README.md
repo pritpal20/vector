@@ -5,9 +5,9 @@
 [![Build Status](https://travis-ci.org/lnishan/vector.svg?branch=master)](https://travis-ci.org/lnishan/vector)
 
 This is meant to show you why you should ditch C++ STLs when performance is critical.  
-`lni::vector` should be faster than or just as efficient as other implementations in all cases. 
+`lni::vector` should always be faster than or just as fast. 
 
-Since the implementation is compliant with the current [C++17 Working Draft](http://open-std.org/JTC1/SC22/WG21/docs/papers/2016/n4594.pdf),  
+Since the implementation is compliant with the current [C++17 Working Draft](http://open-std.org/JTC1/SC22/WG21/docs/papers/2016/n4594.pdf) (minus Allocator),  
 `lni::vector` should be a drop-in replacement for `std:vector` in most cases.  
 
 Just note that `lni::vector` can generate redundancies up to 3x the data size (4x total).  
@@ -156,7 +156,7 @@ This means:
 
 ☘ The impact of growth factors is underestimated.  
 - In these analyses, we "falsely" assume that a memory reallocation would be the last operation
-- The actual average cost is in fact lower, because the costs for the elements inserted after the last memory reallocation are essentially **FREE**
+- The actual average cost is in fact lower, because the costs for the elements inserted after the last memory reallocation are essentially FREE
 
 ### The correct way to use your vector
 
@@ -166,7 +166,7 @@ This means:
 ☘ A better way in my opinion, is to:   
 **Use an implementation with a high growth factor** like mine,  
 and **use `shrink_to_fit()` remove redundancies after you've completed inserting all the elements**.  
-This is because you don't always know how much space you need (Sometimes it depend on the input),  
+This is because you don't always know how much space you need (Sometimes it depends on the input),  
 and over-reserving isn't always a good thing.
 
 
