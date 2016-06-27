@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/lnishan/vector.svg?branch=master)](https://travis-ci.org/lnishan/vector)
 
 This is meant to show you why you should ditch C++ STLs when performance is critical.  
-`lni::vector` should always be faster than or just as fast. 
+`lni::vector` should always be faster or just as fast as other implementations. 
 
 Since the implementation is compliant with the current [C++17 Working Draft](http://open-std.org/JTC1/SC22/WG21/docs/papers/2016/n4594.pdf) (minus Allocator),  
 `lni::vector` should be a drop-in replacement for `std:vector` in most cases.  
