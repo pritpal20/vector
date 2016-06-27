@@ -1,6 +1,6 @@
 # vector
 
-:purple_heart: A 2 - 3x faster `std::vector` implementation (minus Allocator).
+:purple_heart: A supercharged `std::vector` implementation (minus Allocator).
 
 [![Build Status](https://travis-ci.org/lnishan/vector.svg?branch=master)](https://travis-ci.org/lnishan/vector)
 
