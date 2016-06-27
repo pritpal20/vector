@@ -4,11 +4,15 @@
 
 [![Build Status](https://travis-ci.org/lnishan/vector.svg?branch=master)](https://travis-ci.org/lnishan/vector)
 
-This is meant to show you why you should ditch C++ STLs when performance is critical.
+This is meant to show you why you should ditch C++ STLs when performance is critical.  
+`lni::vector` should be faster than or just as efficient as other implementations in all cases. 
 
-It should be a drop-in replacement for `std:vector` in most cases,  
-but note that `lni::vector` can generate redundancies up to 3x the data size (4x total).  
+Since the implementation is compliant with the current [C++17 Working Draft](http://open-std.org/JTC1/SC22/WG21/docs/papers/2016/n4594.pdf),  
+`lni::vector` should be a drop-in replacement for `std:vector` in most cases.  
+
+Just note that `lni::vector` can generate redundancies up to 3x the data size (4x total).  
 (Consider using `shrink_to_fit()` to remove redundancies, but beware that a memory reallocation would take place.)
+
 
 ## Usage
 
@@ -31,53 +35,139 @@ int main() {
 }
 ```
 
-
 ## Test Results
 
-`make && ./tester`
+`lni::vector` is tested with all major compilers (gcc 6, clang 3.8 and VS14).  
+I've also included some sample test benches and a simple test script.
+
+### Current Benches
+
+* back_insertion
+* insertion
+* array_op
+
+### Bench Usage
+
+```bash
+cd bench
+./test.sh {Bench Name}
+```
+
+### Bench Results
+
+#### back_insertion
 
 ---
 
-> Homebrew-gcc 6.1.0, Mac OSX El Capitan, Macbook Air Early 2014
+> **Hardware:** 16GB Persistent Disk, 3.75GB RAM, 1 HyperThread on 2.5GHz Xeon E5 v2 (Google Compute Engine n1-standard-1)  
+> **Environment:** gcc 6.1.1, Ubuntu 16.04 LTS
 
 ```
-lni::vector 0.105s
-std::vector 0.242s
+* std::vector
+0.599s
+
+* lni::vector
+0.281s
 ```
 
-➔ **2.305x** faster
+➔ **113%** faster
 
 ---
 
-> gcc 6.1.1, Ubuntu 16.04 LTS, DigitalOcean VPS (2GB RAM, 1 CPU)
+> **Hardware:** 16GB Persistent Disk, 3.75GB RAM, 1 HyperThread on 2.5GHz Xeon E5 v2 (Google Compute Engine n1-standard-1)  
+> **Environment:** clang 3.8.0, Ubuntu 16.04 LTS
 
 ```
-lni::vector 0.099s
-std::vector 0.238s
+* std::vector
+0.443s
+
+* lni::vector
+0.253s
 ```
 
-➔ **2.404x** faster
+➔ **75%** faster
 
 ---
 
-> clang 3.8.0, Ubuntu 16.04 LTS, DigitalOcean VPS (2GB RAM, 1 CPU)
+> **Hardware:** 256GB SSD, 16GB RAM, i5-4260U (MacBook Air Early 2014)  
+> **Environment:** gcc 6.1.0, OS X El Capitan
 
 ```
-lni::vector 0.103s
-std::vector 0.239s
+* std::vector
+0.832s
+
+* lni::vector
+0.457s
 ```
 
-➔ **2.320x** faster
+➔ **82%** faster
 
 ---
 
-> Visual Studio 2015, Windows 10 Enterprise, Desktop (16GB RAM, i7-3770)
+> **Hardware:** 256GB SSD, 16GB RAM, i5-4260U (MacBook Air Early 2014)  
+> **Environment:** clang-703.0.31, OS X El Capitan
 
 ```
-lni::vector 0.028s
-std::vector 0.088s
+* std::vector
+0.789s
+
+* lni::vector
+0.487s
 ```
-➔ **3.143x** faster
+
+➔ **62%** faster
+
+---
+
+> **Hardware:** 1TB SSHD, 16GB RAM, i7-3770 (Desktop)  
+> **Environment:** Visual Studio 2015, Windows 10 Enterprise 64-bit
+
+```
+* std::vector
+0.651s
+
+* lni::vector
+0.261s
+```
+➔ **149%** faster
+
+
+## Discussion
+
+### Why is `lni::vector` faster?
+
+*Fact 1.* A **LOT** of people misuse `std::vector` as [Variable-Length Array](https://en.wikipedia.org/wiki/Variable-length_array).
+
+*Fact 2.* Memory copying is expensive.
+
+Most `std::vector` implementations are written as [Dynamic Table](https://en.wikipedia.org/wiki/Dynamic_array).  
+The *growth factors* for these implementations are usually no greater than 2.  
+Also, the initial reserved sizes are usually assigned only 1.
+
+This means:
+
+☘ Memory reallocations are very likely to take place, especially in the beginning.  
+- You usually need more than 1 single space  
+- Low growth factor and low initial reserved size means small sizes in the beginning (1, 2, 4, 8 ...), even though it grows fast later on
+
+☘ Assuming the growth factor is 2, the average cost of inserting a new element is **3**, which is reasonably high.  
+- Use your favorite complexity analysis method: Aggregation, Accounting, Potential ... etc., any will do  
+- The average cost for `lni::vector` is **2.333**, and is in fact lower for the reason stated below
+
+☘ The impact of growth factors is underestimated.  
+- In these analyses, we "falsely" assume that a memory reallocation would be the last operation
+- The actual average cost is in fact lower, because the costs for the elements inserted after the last memory reallocation are essentially **FREE**
+
+### The correct way to use your vector
+
+☘ If you still want to use STLs,  
+**ALWAYS reserve a reasonable size** before you start inserting elements.
+
+☘ A better way in my opinion, is to:   
+**Use an implementation with a high growth factor** like mine,  
+and **use `shrink_to_fit()` remove redundancies after you've completed inserting all the elements**.  
+This is because you don't always know how much space you need (Sometimes it depend on the input),  
+and over-reserving isn't always a good thing.
 
 
 ## License
