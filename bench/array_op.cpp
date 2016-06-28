@@ -3,11 +3,19 @@
 #include <vector>
 #include "../vector.hpp"
 
-#ifdef USE_LNI_VECTOR
-using lni::vector;
+
+#if defined(USE_LNI_VECTOR)
+
+template <typename T>
+using vec = lni::vector<T>;
+
 #else
-using std::vector;
+
+template <typename T>
+using vec = std::vector<T>;
+
 #endif
+
 
 const int N = 1e6;
 const int Q = 1e5;
@@ -18,7 +26,7 @@ int main() {
 	int cmd, s, e;
 	int add, ai;
 	st = clock();
-	vector<int> v;
+	vec<int> v;
 	v.resize(N);
 	for (i = 0; i < N; i++)
 		v[i] = i;

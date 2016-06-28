@@ -4,11 +4,19 @@
 #include <vector>
 #include "../vector.hpp"
 
-#ifdef USE_LNI_VECTOR
-using lni::vector;
+
+#if defined(USE_LNI_VECTOR)
+
+template <typename T>
+using vec = lni::vector<T>;
+
 #else
-using std::vector;
+
+template <typename T>
+using vec = std::vector<T>;
+
 #endif
+
 
 const int N = 1e5;
 
@@ -18,7 +26,7 @@ int main() {
 	
 	st = clock();
 
-	vector<int> v;
+	vec<int> v;
 	for (i = 0; i < N; ++i)
 		v.push_back(i);
 	for (i = 0; i < N; ++i)
