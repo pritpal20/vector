@@ -1,5 +1,7 @@
 .PHONY: clean
 
+CC = g++
+
 
 all: \
 	std_array_op \
@@ -11,22 +13,22 @@ all: \
 
 
 std_array_op: array_op.cpp ../vector.hpp
-	g++ -O2 -std=c++11 array_op.cpp -o std_array_op
+	$(CC) -O2 -std=c++11 array_op.cpp -o std_array_op
 
 lni_array_op: array_op.cpp ../vector.hpp
-	g++ -O2 -std=c++11 -D USE_LNI_VECTOR array_op.cpp -o lni_array_op
+	$(CC) -O2 -std=c++11 -D USE_LNI_VECTOR array_op.cpp -o lni_array_op
 
 std_insertion: insertion.cpp ../vector.hpp
-	g++ -O2 -std=c++11 insertion.cpp -o std_insertion
+	$(CC) -O2 -std=c++11 insertion.cpp -o std_insertion
 
 lni_insertion: insertion.cpp ../vector.hpp
-	g++ -O2 -std=c++11 -D USE_LNI_VECTOR insertion.cpp -o lni_insertion
+	$(CC) -O2 -std=c++11 -D USE_LNI_VECTOR insertion.cpp -o lni_insertion
 
 std_back_insertion: back_insertion.cpp ../vector.hpp
-	g++ -O2 -std=c++11 back_insertion.cpp -o std_back_insertion
+	$(CC) -O2 -std=c++11 back_insertion.cpp -o std_back_insertion
 
 lni_back_insertion: back_insertion.cpp ../vector.hpp
-	g++ -O2 -std=c++11 -D USE_LNI_VECTOR back_insertion.cpp -o lni_back_insertion
+	$(CC) -O2 -std=c++11 -D USE_LNI_VECTOR back_insertion.cpp -o lni_back_insertion
 
 
 clean:
