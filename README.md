@@ -4,13 +4,13 @@
 
 [![Build Status](https://travis-ci.org/lnishan/vector.svg?branch=master)](https://travis-ci.org/lnishan/vector)
 
-This is meant to show you why you should ditch C++ STLs when performance is critical.  
+☘ This is meant to show you why you should ditch C++ STLs when performance is critical.  
 `lni::vector` should always be faster or just as fast as other implementations. 
 
-Since the implementation is compliant with the current [C++17 Working Draft](http://open-std.org/JTC1/SC22/WG21/docs/papers/2016/n4594.pdf) (minus Allocator),  
+☘ Since the implementation is compliant with the current [C++17 Working Draft](http://open-std.org/JTC1/SC22/WG21/docs/papers/2016/n4594.pdf) (minus Allocator),  
 `lni::vector` should be a drop-in replacement for `std:vector` in most cases.  
 
-Just note that `lni::vector` can generate redundancies up to 3x the data size (4x total).  
+☘ Just note that `lni::vector` can generate redundancies up to 3x the data size (4x total).  
 (Consider using `shrink_to_fit()` to remove redundancies, but beware that a memory reallocation would take place.)
 
 
@@ -56,6 +56,39 @@ cd bench
 ### Bench Results
 
 #### back_insertion
+
+---
+
+> **Hardware:** 50GB Vmware Disk, 4GB RAM, 1 vCore (Guest VM, Host: 1TB SSHD, 16GB RAM, i7-3770)  
+> **Environment:** gcc 6.1.1, Kubuntu 16.04 LTS
+
+```
+* std::vector
+0.364s
+
+* lni::vector
+0.189s
+
+* folly::fbvector
+0.379s
+```
+
+➔ **92 - 100%** faster
+
+---
+
+> **Hardware:** 120GB SSD, 16GB RAM, i7-3770 (Desktop)  
+> **Environment:** Visual Studio 2015, Windows 10 Enterprise 64-bit
+
+```
+* std::vector
+0.651s
+
+* lni::vector
+0.261s
+```
+
+➔ **149%** faster
 
 ---
 
@@ -117,26 +150,12 @@ cd bench
 
 ➔ **62%** faster
 
----
-
-> **Hardware:** 1TB SSHD, 16GB RAM, i7-3770 (Desktop)  
-> **Environment:** Visual Studio 2015, Windows 10 Enterprise 64-bit
-
-```
-* std::vector
-0.651s
-
-* lni::vector
-0.261s
-```
-➔ **149%** faster
-
 
 ## Discussion
 
 ### Why is `lni::vector` faster?
 
-*Fact 1.* A **LOT** of people misuse `std::vector` as [Variable-Length Array](https://en.wikipedia.org/wiki/Variable-length_array).
+*Fact 1.* A **LOT** of people misuse `std::vector`.
 
 *Fact 2.* Memory copying is expensive.
 
