@@ -9,7 +9,9 @@ all: \
 	std_insertion \
 	lni_insertion \
 	std_back_insertion \
-	lni_back_insertion
+	lni_back_insertion \
+	std_stack \
+	lni_stack
 
 
 std_array_op: array_op.cpp ../vector.hpp
@@ -30,6 +32,12 @@ std_back_insertion: back_insertion.cpp ../vector.hpp
 lni_back_insertion: back_insertion.cpp ../vector.hpp
 	$(CC) -O2 -std=c++11 -D USE_LNI_VECTOR back_insertion.cpp -o lni_back_insertion
 
+std_stack: stack.cpp ../vector.hpp
+	$(CC) -O2 -std=c++11 stack.cpp -o std_stack
+
+lni_stack: stack.cpp ../vector.hpp
+	$(CC) -O2 -std=c++11 -D USE_LNI_VECTOR stack.cpp -o lni_stack
+
 
 clean:
 	rm std_array_op || true
@@ -38,3 +46,5 @@ clean:
 	rm lni_insertion || true
 	rm std_back_insertion || true
 	rm lni_back_insertion || true
+	rm std_stack || true
+	rm lni_stack || true

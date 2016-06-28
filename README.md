@@ -45,6 +45,7 @@ I've also included some sample test benches and a simple test script.
 * back_insertion
 * insertion
 * array_op
+* stack
 
 ### Bench Usage
 
