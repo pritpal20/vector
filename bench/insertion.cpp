@@ -3,12 +3,18 @@
 #include <ctime>
 #include <vector>
 #include "../vector.hpp"
+#include <folly/FBVector.h>
 
 
 #if defined(USE_LNI_VECTOR)
 
 template <typename T>
 using vec = lni::vector<T>;
+
+#elif defined(USE_FOLLY_VECTOR)
+
+template <typename T>
+using vec = folly::fbvector<T>;
 
 #else
 

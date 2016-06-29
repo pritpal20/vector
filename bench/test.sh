@@ -11,6 +11,7 @@ fi
 printf "* Building ..."
 make -s std_$1
 make -s lni_$1
+make -s folly_$1
 echo "Done"
 echo ""
 
@@ -20,4 +21,8 @@ echo ""
 
 echo "* std::vector"
 ./std_$1
+echo ""
+
+echo "* folly::fbvector"
+./folly_$1
 
