@@ -4,6 +4,7 @@ tester
 dbg
 std_*
 lni_*
+folly_*
 *.swp
 *.stackdump
 
