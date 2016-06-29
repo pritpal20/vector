@@ -295,7 +295,6 @@ namespace lni {
 
 	template <typename T>
 	inline void vector<T>::reallocate() {
-		size_type i;
 		T *tarr = new T[rsrv_sz];
 		memcpy(tarr, arr, vec_sz * sizeof(T));
 		delete [] arr;
