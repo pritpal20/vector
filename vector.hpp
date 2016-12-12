@@ -3,6 +3,8 @@
 #include <utility>
 #include <iterator>
 #include <stdexcept>
+#include <iostream>
+#include <string>
 
 #ifndef LNI_VECTOR
 #define LNI_VECTOR
@@ -31,7 +33,7 @@ namespace lni {
 			vector() noexcept;
 			explicit vector(size_type n);
 			vector(size_type n, const T &val);
-			template <class InputIt> vector(InputIt first, InputIt last);
+			template <class InputIt> vector(InputIt first, InputIt last); //v1(v2.begin(),v2.end())
 			vector(std::initializer_list<T>);
 			vector(const vector<T> &);
 			vector(vector<T> &&) noexcept;
@@ -100,6 +102,8 @@ namespace lni {
 			bool operator <= (const vector<T> &) const;
 			bool operator > (const vector<T> &) const;
 			bool operator >= (const vector<T> &) const;
+			
+			friend void Print(const vector<T> &,std::string);
 		private:
 			size_type rsrv_sz = 4;
 			size_type vec_sz = 0;
@@ -139,8 +143,11 @@ namespace lni {
 	template <typename T>
 	template <class InputIt>
 	vector<T>::vector(InputIt first, InputIt last) {
+		std::cout << "Inside ... \n" ;
 		size_type i, count = last - first;
+		std::cout <<"count ="  << count << std::endl;
 		rsrv_sz = count << 2;
+		vec_sz = count;
 		arr = new T[rsrv_sz];
 		for (i = 0; i < count; ++i, ++first)
 			arr[i] = *first;
@@ -181,6 +188,11 @@ namespace lni {
 
 	template <typename T>
 	vector<T> & vector<T>::operator = (const vector<T> &other) {
+		
+		if(this == &other)
+		{
+			return *this;
+		}
 		size_type i;
 		if (rsrv_sz < other.vec_sz) {
 			rsrv_sz = other.vec_sz << 2;
@@ -1395,7 +1407,18 @@ namespace lni {
 	void vector<long double>::clear() noexcept {
 		vec_sz = 0;
 	}
-
+	
+	template <typename T>
+	void Print(const vector<T> & v,std::string vec_name ) {
+		 
+		for(auto i = 0 ; i < v.size() ; i++) {
+			 
+			std::cout  << vec_name << "[" << i <<"] = " << v[i] << std::endl;
+		}
+		 
+	}
+	
+	
 
 }
 
